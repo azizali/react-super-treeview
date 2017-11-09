@@ -3,7 +3,7 @@ Expandable Tree Component
 React Component that is highly customizable, which creates unlimited deep nested expandable/collapsable tree nodes.
 
 ### How to install
-`npm install react-expandable-tree`
+`npm install expandable-tree`
 
 
 ### Usage
@@ -13,7 +13,7 @@ Start using the component in just two steps.
 #### Step 1: Import and use component in JS file
 
 ```
-import ExpandableTree from 'react-expandable-tree';
+import ExpandableTree from 'expandable-tree';
 
 let data = [
     {
@@ -48,7 +48,7 @@ let data = [
 
 #### Step 2: Import styles to project
 
-The styles of the component are in the file `node_modules/react-expandable-tree/dist/style.css`
+The styles of the component are in the file `node_modules/expandable-tree/dist/style.css`
 
 ##### Using webpack
 
@@ -56,12 +56,12 @@ If you are using webpack, put this in your project's styles.
 the tilda `~` tells webpack to pick-up the file from `node_modules` folder
 
 ```
-~react-expandable-tree/dist/style.css
+~expandable-tree/dist/style.css
 ```
 
 ##### Manually importing styles
 
-You can also manually copy the css file from `node_modules/react-expandable-tree/dist/style.css` and put it in your project files
+You can also manually copy the css file from `node_modules/expandable-tree/dist/style.css` and put it in your project files
 
 
 

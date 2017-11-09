@@ -1,7 +1,7 @@
 {
-  "name": "react-expandable-tree",
+  "name": "expandable-tree",
   "version": "0.1.0",
-  "description": "Expandable Tree React Componebt",
+  "description": "Expandable Tree React Component",
   "main": "src/index.js",
   "files": [
     "dist"
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iLoveCodingOrg/react-expandable-tree.git"
+    "url": "https://github.com/iLoveCodingOrg/expandable-tree.git"
   },
   "keywords": [
     "react-component",
