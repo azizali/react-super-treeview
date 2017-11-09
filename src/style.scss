@@ -1,0 +1,114 @@
+.expandable-tree {
+  font-size: 13px;
+  font-weight: 300;
+
+  > div {
+    > .expandable-tree-no-children-transition {
+      transition-property: all;
+    }
+
+    > .expandable-tree-no-children-transition-enter {
+      opacity: 0;
+      height: 0;
+
+      &.expandable-tree-no-children-transition-enter-active {
+        opacity: 1;
+        height: 0;
+      }
+    }
+
+    > .expandable-tree-no-children {
+      > .expandable-tree-no-children-content {
+        margin-bottom: 6px;
+      }
+    }
+
+    > .expandable-tree-node {
+      padding: 0 3px;
+      border-radius: 3px;
+
+      > .expandable-tree-children-container {
+        margin-left: 5px;
+        padding-left: 20px;
+        border-left: 1px solid #ccc;
+
+        > .expandable-tree-loading {
+          padding: 0 3px;
+          margin-bottom: 6px;
+        }
+      }
+
+      > .expandable-tree-node-content {
+        margin-bottom: 6px;
+
+        > label {
+          vertical-align: top;
+          text-overflow: ellipsis;
+          width: calc(100% - 35px);
+          overflow: hidden;
+          white-space: nowrap;
+          display: inline-block;
+          margin: 0;
+          font-weight: 300;
+          font-size: 13px;
+        }
+
+        > input[type=checkbox] {
+          float: left;
+          margin-right: 5px;
+        }
+
+        > .expandable-tree-triangle-btn {
+          margin-right: 5px;
+          cursor: pointer;
+          display: inline-block;
+          float: left;
+        }
+
+        > .expandable-tree-triangle-btn-right {
+          width: 8px;
+          height: 10px;
+          margin-top: 2px;
+          margin-left: 2px;
+          border-top: 5px solid transparent;
+          border-left: 6px solid #fff;
+          border-bottom: 5px solid transparent;
+        }
+
+        > .expandable-tree-triangle-btn-down {
+          width: 10px;
+          height: 8px;
+          margin-top: 5px;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 6px solid #fff;
+        }
+
+        > .delete-icon {
+          cursor: pointer;
+        }
+      }
+    }
+
+    > .expandable-tree-node-transition {
+      transition-property: all;
+    }
+
+    > .expandable-tree-node-transition-enter {
+      opacity: 0;
+
+      &.expandable-tree-node-transition-enter-active {
+        opacity: 1;
+      }
+    }
+
+    > .expandable-tree-node-transition-exit {
+      opacity: 1;
+
+      &.expandable-tree-node-transition-exit-active {
+        opacity: 0;
+        background-color: red;
+      }
+    }
+  }
+}
