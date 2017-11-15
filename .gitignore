@@ -43,4 +43,5 @@ cfg/secrets.js
 .DS_Store
 *.tgz
 
-dist/
+dist
+dist-examples

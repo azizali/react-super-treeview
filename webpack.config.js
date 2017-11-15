@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const config0 = {
+const config = {
     entry : {
         main: './src',
     },
@@ -44,4 +44,4 @@ const config0 = {
     ]
 }
 
-module.exports = config0;
+module.exports = config;
