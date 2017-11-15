@@ -1,5 +1,6 @@
 {
   "name": "expandable-tree",
+  "version": "0.2.0",
   "description": "Expandable Tree React Component",
   "main": "dist/main.js",
   "files": [
