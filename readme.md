@@ -129,6 +129,11 @@ transitionEnterTimeout     | number    | `1200`                              | T
 transitionExitTimeout      | number    | `1200`                              | Time in milliseconds for node remove animation
 
 
+### Test
+```
+npm test
+```
+
 ### Shoutout
 Shoutout to [Andrew Onyshchuk](https://github.com/oandrew) for suggesting a clean API exposing strategy.
 
