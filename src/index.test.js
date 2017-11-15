@@ -1,6 +1,16 @@
+// setup file
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
+
+configure({ adapter: new Adapter() });
+
 import React from 'react';
 import { shallow } from 'enzyme';
 import ExpandableTree from './';
+import sinon from 'sinon';
+import chai, { expect } from 'chai';
+import sinonChai from 'sinon-chai';
+chai.use(sinonChai);
 
 const standardProps = {
     data: [
@@ -38,14 +48,9 @@ const standardProps = {
     ]
 };
 
-function componentPrinter(type, props = standardProps) {
-    if (type === 'shallow') {
-        return shallow(<ExpandableTree {...props} />);
-    }
-}
 
 describe('<ExpandableTree />', () => {
-    let sandbox;
+    let sandbox, component, componentInstance, componentWrapElement;
 
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
@@ -56,8 +61,8 @@ describe('<ExpandableTree />', () => {
     });
 
     describe('componentWillMount()', () => {
-        let component = componentPrinter('shallow');
-        let componentWrapElement = component.find('.expandable-tree');
+        component = shallow(<ExpandableTree {...standardProps} />);
+        componentWrapElement = component.find('.expandable-tree');
         let transitionGroupElement = componentWrapElement.find(
             'TransitionGroup'
         );
@@ -98,21 +103,23 @@ describe('<ExpandableTree />', () => {
                 componentWrapElement
                     .find('TransitionGroup')
                     .childAt(0)
-                    .find('CSSTransition > div')
+                    .find('CSSTransition > div label')
                     .text()
             ).to.equal(firstLabel);
+
             expect(
                 componentWrapElement
                     .find('TransitionGroup')
                     .childAt(1)
-                    .find('CSSTransition > div')
+                    .find('CSSTransition > div label')
                     .text()
-            ).to.equal(`${secondLabel}<ExpandableTree />`);
+            ).to.equal(`${secondLabel}`);
+
             expect(
                 componentWrapElement
                     .find('TransitionGroup')
                     .childAt(2)
-                    .find('CSSTransition > div')
+                    .find('CSSTransition > div label')
                     .text()
             ).to.equal(thirdLabel);
         });
@@ -132,7 +139,7 @@ describe('<ExpandableTree />', () => {
         });
 
         it('should show delete button', () => {
-            const deleteBtnSelector = 'span.glyphicon-trash';
+            const deleteBtnSelector = 'div.delete-btn';
 
             expect(
                 transitionGroupElement.childAt(0).find(deleteBtnSelector)
@@ -159,13 +166,14 @@ describe('<ExpandableTree />', () => {
         });
 
         it('should NOT show checkbox', () => {
-            var component = componentPrinter('shallow', {
+            const props = {
                 isCheckable: () => {
                     return false;
                 },
                 ...standardProps
-            });
-            var componentWrapElement = component.find('.expandable-tree');
+            };
+            component = shallow(<ExpandableTree {...props} />);
+            componentWrapElement = component.find('.expandable-tree');
 
             const checkboxSelector = 'input[type="checkbox"]';
 
@@ -181,13 +189,15 @@ describe('<ExpandableTree />', () => {
         });
 
         it('should NOT show delete button', () => {
-            var component = componentPrinter('shallow', {
+            const props = {
                 isDeletable: () => {
                     return false;
                 },
                 ...standardProps
-            });
-            var componentWrapElement = component.find('.expandable-tree');
+            };
+
+            component = shallow(<ExpandableTree {...props} />)
+            componentWrapElement = component.find('.expandable-tree');
 
             const deleteBtnSelector = 'span.glyphicon-trash';
 
@@ -203,13 +213,14 @@ describe('<ExpandableTree />', () => {
         });
 
         it('should NOT show toggle button', () => {
-            var component = componentPrinter('shallow', {
+            const props = {
                 isExpandable: () => {
                     return false;
                 },
                 ...standardProps
-            });
-            var componentWrapElement = component.find('.expandable-tree');
+            };
+            component = shallow(<ExpandableTree {...props} />)
+            componentWrapElement = component.find('.expandable-tree');
 
             const toggleBtnSelector = 'expandable-tree-triangle-btn';
 
@@ -233,10 +244,10 @@ describe('<ExpandableTree />', () => {
             }
         ];
 
-        let component, sandbox;
+        component, sandbox;
 
         beforeEach(() => {
-            component = componentPrinter('shallow');
+            component = shallow(<ExpandableTree {...standardProps} />);
             sandbox = sinon.sandbox.create();
         });
 
@@ -253,15 +264,15 @@ describe('<ExpandableTree />', () => {
     });
 
     describe('handleUpdate()', () => {
-        let component, onUpdateCbStub;
+        let onUpdateCbStub;
 
         beforeEach(() => {
             onUpdateCbStub = sandbox.stub();
-
-            component = componentPrinter('shallow', {
+            const props = {
                 onUpdateCb: onUpdateCbStub,
                 ...standardProps
-            });
+            };
+            component = shallow(<ExpandableTree {...props} />)
         });
 
         it('should call onUpdateCb()', () => {
@@ -273,22 +284,19 @@ describe('<ExpandableTree />', () => {
     describe('handleCheckToggle()', () => {
         const checkboxSelector = 'input[type="checkbox"]';
 
-        let sandbox,
-            component,
-            componentInstance,
-            onCheckToggleCbStub,
+        let onCheckToggleCbStub,
             handleCheckToggleSpy,
             handleUpdateStub,
             checkbox;
 
         beforeEach(() => {
-            sandbox = sinon.sandbox.create();
             onCheckToggleCbStub = sandbox.stub();
 
-            component = componentPrinter('shallow', {
+            const props = {
                 onCheckToggleCb: onCheckToggleCbStub,
                 ...standardProps
-            });
+            };
+            component = shallow(<ExpandableTree {...props} />)
 
             componentInstance = component.instance();
             handleCheckToggleSpy = sandbox.spy(
@@ -302,10 +310,6 @@ describe('<ExpandableTree />', () => {
                 .find('TransitionGroup')
                 .childAt(0)
                 .find(checkboxSelector);
-        });
-
-        afterEach(() => {
-            sandbox.restore();
         });
 
         it('should set lastCheckToggledNodeIndex to currentNode', () => {
@@ -399,7 +403,7 @@ describe('<ExpandableTree />', () => {
 
                 it('should call "onCheckToggleCbStub" once', () => {
                     // expect(onCheckToggleCbStub).to.have.been.calledWith(node, depth);
-                    expect(onCheckToggleCbStub).to.have.been.callOnce;
+                    expect(onCheckToggleCbStub).to.have.been.calledOnce;
                 });
 
                 it('should set "lastCheckToggledNodeIndex" to index of 4th checkbox', () => {
@@ -434,7 +438,6 @@ describe('<ExpandableTree />', () => {
                 };
 
                 let checkbox3;
-                let componentWrapElement;
                 let transitionGroupElement;
 
                 beforeEach(() => {
@@ -452,7 +455,7 @@ describe('<ExpandableTree />', () => {
                 });
 
                 it('should call "onCheckToggleCbStub" once', () => {
-                    expect(onCheckToggleCbStub).to.have.been.callOnce;
+                    expect(onCheckToggleCbStub).to.have.been.calledOnce;
                 });
 
                 it('should set "lastCheckToggledNodeIndex" to index of 3rd checkbox', () => {
@@ -487,18 +490,17 @@ describe('<ExpandableTree />', () => {
                 ExpandableTree.prototype,
                 'printNoChildrenMessage'
             );
-            const component = componentPrinter('shallow', {
+            const props = {
                 ...standardProps,
                 noChildrenAvailableMessage
-            });
+            };
+            component = shallow(<ExpandableTree {...props} />)
             component.instance().printNodes([]);
             expect(printNoChildrenMessage).to.be.calledOnce;
         });
         it('should return nodes when nodeArray is not empty', () => {
             const nodeArray = [{}, {}, {}];
-            const component = componentPrinter('shallow', {
-                ...standardProps
-            });
+            component = shallow(<ExpandableTree {...standardProps} />);
             const nodes = component.instance().printNodes(nodeArray);
             const nodesElement = shallow(nodes);
             expect(nodesElement.find('.expandable-tree-node')).to.have.length(
@@ -511,9 +513,7 @@ describe('<ExpandableTree />', () => {
         let component, componentInstance;
 
         it('should return null when isExpanded is false', () => {
-            component = componentPrinter('shallow', {
-                ...standardProps
-            });
+            component = shallow(<ExpandableTree {...standardProps} />);
             componentInstance = component.instance();
             const node = { isExpanded: false };
             expect(componentInstance.printChildren(node)).to.be.equal(null);
@@ -523,10 +523,11 @@ describe('<ExpandableTree />', () => {
             it('should return loadingElement when isChildrenLoading is true', () => {
                 const loadingId = 'this-is-a-spinner';
                 const loadingElement = <div id={loadingId} />;
-                component = componentPrinter('shallow', {
+                const props = {
                     ...standardProps,
                     loadingElement
-                });
+                };
+                component = shallow(<ExpandableTree {...props} />)
                 componentInstance = component.instance();
                 const node = { isExpanded: true, isChildrenLoading: true };
                 const children = shallow(componentInstance.printChildren(node));
@@ -534,9 +535,7 @@ describe('<ExpandableTree />', () => {
             });
 
             it('should return ExpandableTree when isChildrenLoading is false', () => {
-                component = componentPrinter('shallow', {
-                    ...standardProps
-                });
+                component = shallow(<ExpandableTree {...standardProps} />);
                 componentInstance = component.instance();
                 const node = {
                     isExpanded: true,
@@ -554,21 +553,22 @@ describe('<ExpandableTree />', () => {
             componentInstance,
             handleUpdateSpy,
             onDeleteCbStub,
+            deleteBtnSelector = 'div.delete-btn',
             deleteBtn;
 
         beforeEach(() => {
-            onDeleteCbStub = sandbox.stub();
+            onDeleteCbStub = sandbox.stub().onCall().returns(true);
 
-            component = componentPrinter('shallow', {
+            const props = {
                 onDeleteCb: onDeleteCbStub,
                 ...standardProps
-            });
+            };
+            component = shallow(<ExpandableTree {...props} />)
 
             componentInstance = component.instance();
 
             handleUpdateSpy = sandbox.spy(componentInstance, 'handleUpdate');
 
-            const deleteBtnSelector = 'span.glyphicon-trash';
             deleteBtn = component
                 .find('.expandable-tree')
                 .find('TransitionGroup')
@@ -607,8 +607,6 @@ describe('<ExpandableTree />', () => {
         it('should delete child node', () => {
             onDeleteCbStub.returns(true);
 
-            let deleteBtnSelector = 'span.glyphicon-trash';
-
             let childExpandableTree = component
                 .find('.expandable-tree')
                 .find('TransitionGroup')
@@ -644,10 +642,12 @@ describe('<ExpandableTree />', () => {
                 'handleExpandToggle'
             );
 
-            component = componentPrinter('shallow', {
+            const props = {
                 onExpandToggleCb: onExpandToggleCbStub,
                 ...standardProps
-            });
+            };
+
+            component = shallow(<ExpandableTree {...props} />)
 
             const expandToggleBtnSelector = '.expandable-tree-triangle-btn';
             expandToggleBtn = component
