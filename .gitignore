@@ -44,4 +44,3 @@ cfg/secrets.js
 *.tgz
 
 dist
-dist-examples
