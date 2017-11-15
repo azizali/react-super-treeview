@@ -2,11 +2,22 @@ Expandable Tree Component
 ===
 React Component that is highly customizable, which creates unlimited deep nested expandable/collapsable tree nodes.
 
+### Features
+- Expand/Collapse
+- Checkbox
+- Delete button
+- Provide custom delete button
+- Asynchronously load data
+- Provide custom loading indicator
+- Delete animation
+- Unlimited nesting
+- Granular control over when to show expand, checkbox or delete options
+
 ### How to install
 `npm install expandable-tree`
 
 
-### Usage
+### Basic Usage
 
 Start using the component in just two steps.
 
@@ -15,34 +26,48 @@ Start using the component in just two steps.
 ```
 import ExpandableTree from 'expandable-tree';
 
-let data = [
-    {
-        id: 1,
-        name: 'PARENT 1'
-    },
-    {
-        id: 2,
-        name: 'PARENT 2',
-        isExpanded: true,
-        isChecked: true,
-        children: [
-            {
-                id: 21,
-                name: 'child 2.1'
-            },
-            {
-                id: 22,
-                name: 'child 2.2'
-            },
-            }
-            {
-                id: 23,
-                name: 'child 2.3'
-        ]
-    }
-]
 
-<ExpandableTree data={data} />
+// CODE IN REACT COMPONENT
+
+constructor() { 
+    super();
+    this.state.data = [
+        {
+            id: 1,
+            name: 'Parent A'
+        },
+        {
+            id: 2,
+            name: 'Parent B',
+            isExpanded: true,
+            isChecked: true,
+            children: [
+                {
+                    id: 1,
+                    name: 'Child 1'
+                },
+                {
+                    id: 2,
+                    name: 'Child 2'
+                },
+                {
+                    id: 3,
+                    name: 'Child 3'
+                }
+            ]
+        }
+    ]
+}
+
+
+// CODE IN RENDER FUNCTION
+
+<ExpandableTree
+    data={ data }
+    onUpdateCb={(updatedData) => {
+        this.setState({data: updatedData})
+    }}
+/>
 
 ```
 
@@ -63,7 +88,13 @@ the tilda `~` tells webpack to pick-up the file from `node_modules` folder
 
 You can also manually copy the css file from `node_modules/expandable-tree/dist/style.css` and put it in your project files
 
+### Examples
 
+See all the examples in action
+
+1. Clone this repo
+2. Run `npm install` and then `npm run examples`
+3. Open `./dist-examples/index.html` in browser to see the interactive demo
 
 ### All Prop Options
 Prop                       | Type      | Default Value                       | Description
@@ -86,3 +117,22 @@ onExpandToggleCb           | function  | `(node, depth) => {}`               | F
 onUpdateCb                 | function  | `(updatedData, depth) => {}`        | Function callback when data gets updated
 transitionEnterTimeout     | number    | `1200`                              | Time in milliseconds for node appear animation
 transitionExitTimeout      | number    | `1200`                              | Time in milliseconds for node remove animation
+
+### Shoutout
+Shoutout to [@oandrew](https://github.com/oandrew) for suggesting a clean API exposing strategy.
+
+Thank you [@tjhubert](https://github.com/tjhubert) and [@prashanth0926](https://github.com/prashanth0926) for your contribution to the animation feature and the bug fixes.
+
+
+### TODO:
+
+- [ ] Feature: Add click event for text
+- [ ] Feature: Add css class on nodes based on its state i.e `<div class="expanded">Text</div>`
+- [ ] Feature: Stretch goal: Add ability to add custom decorator/element per node
+- [ ] Feature: Provide .scss file with configurable variables
+- [ ] Workflow: Provide auto-launch browser feature when examples are run with `npm run examples` 
+- [ ] Performance: Remove the need for lodash
+
+### License
+
+Expandable Tree is [MIT licensed](./LICENSE).
