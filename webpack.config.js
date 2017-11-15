@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const config = {
     entry : {
@@ -33,7 +34,11 @@ const config = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('style.css'),
+        new CopyWebpackPlugin([{
+            from: 'src/style.scss',
+            dest: 'dist/[name].[ext]'
+        }])
     ],
 
     externals: [
