@@ -1,8 +1,12 @@
 {
   "name": "expandable-tree",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Expandable Tree React Component",
   "main": "dist/main.js",
+  "engines": {
+    "node": "^6.7.0",
+    "npm": "^4.0.0"
+  },
   "files": [
     "dist"
   ],
@@ -45,6 +49,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
