@@ -1,6 +1,10 @@
+// VARIABLES
+$expandable-tree-text-color: #000;
+$expandable-tree-arrow-color: #000;
+$expandable-tree-tree-stem-color: #000;
+
 .expandable-tree {
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 100%;
 
   > div {
     > .expandable-tree-no-children-transition {
@@ -19,50 +23,48 @@
 
     > .expandable-tree-no-children {
       > .expandable-tree-no-children-content {
-        margin-bottom: 6px;
+        margin: 3px 0;
       }
     }
 
     > .expandable-tree-node {
-      padding: 0 3px;
-      border-radius: 3px;
-
       > .expandable-tree-children-container {
         margin-left: 5px;
         padding-left: 20px;
-        border-left: 1px solid #ccc;
+        border-left: 1px solid $expandable-tree-tree-stem-color;
 
         > .expandable-tree-loading {
           padding: 0 3px;
-          margin-bottom: 6px;
+          margin: 3px 0;
         }
       }
 
       > .expandable-tree-node-content {
-        margin-bottom: 6px;
+        padding: 0 3px;
+        margin: 3px 0;
 
         > label {
           vertical-align: top;
           text-overflow: ellipsis;
-          width: calc(100% - 35px);
+          width: calc(100% - 55px);
           overflow: hidden;
           white-space: nowrap;
           display: inline-block;
           margin: 0;
-          font-weight: 300;
-          font-size: 13px;
+          font-weight: normal;
+          font-size: 100%;
         }
 
         > input[type=checkbox] {
           float: left;
-          margin-right: 5px;
+          margin: 4px 5px 0 0;
+          line-height: normal;
         }
 
         > .expandable-tree-triangle-btn {
+          float: left;
           margin-right: 5px;
           cursor: pointer;
-          display: inline-block;
-          float: left;
         }
 
         > .expandable-tree-triangle-btn-right {
@@ -71,7 +73,7 @@
           margin-top: 2px;
           margin-left: 2px;
           border-top: 5px solid transparent;
-          border-left: 6px solid #fff;
+          border-left: 6px solid $expandable-tree-arrow-color;
           border-bottom: 5px solid transparent;
         }
 
@@ -81,10 +83,11 @@
           margin-top: 5px;
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
-          border-top: 6px solid #fff;
+          border-top: 6px solid $expandable-tree-arrow-color;
         }
 
-        > .delete-icon {
+        > .delete-btn {
+          float: right;
           cursor: pointer;
         }
       }

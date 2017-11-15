@@ -12,6 +12,7 @@ React Component that is highly customizable, which creates unlimited deep nested
 - Delete animation
 - Unlimited nesting
 - Granular control over when to show expand, checkbox or delete options
+- Multi-(un)select checkbox (shift + Check) like Gmail
 
 ### How to install
 `npm install expandable-tree`
@@ -73,20 +74,29 @@ constructor() {
 
 #### Step 2: Import styles to project
 
-The styles of the component are in the file `node_modules/expandable-tree/dist/style.css`
+Import Expandable Tree styles with `css` or `scss` file.
+
+The styles of the component are in the file `node_modules/expandable-tree/dist/style.css or style.scss`
+
+Note: When you use the `scss` file, you can modify the style variables for quick styling.
 
 ##### Using webpack
 
 If you are using webpack, put this in your project's styles.
-the tilda `~` tells webpack to pick-up the file from `node_modules` folder
 
 ```
-~expandable-tree/dist/style.css
+~expandable-tree/dist/style.css 
 ```
+or `scss` if your project has the ability to process it
+```
+~expandable-tree/dist/style.scss
+```
+
+the tilda `~` tells webpack to pick-up the file from `node_modules` folder
 
 ##### Manually importing styles
 
-You can also manually copy the css file from `node_modules/expandable-tree/dist/style.css` and put it in your project files
+You can also manually copy the `css/scss` file from `node_modules/expandable-tree/dist/style.(s)css` and put it in your project files
 
 ### Examples
 
@@ -112,16 +122,17 @@ keywordLabel               | string    | `'name'`                            | k
 loadingElement             | element   | `null`                              | Element that shows when data is loading
 noChildrenAvailableMessage | string    | `'No data found'`                   | Message that shows when the expanded node has no children
 onCheckToggleCb            | function  | `(arrayOfNodes, depth) => {}`       | Function callback when checkbox gets toggled
-onDeleteCb                 | function  | `(node, updatedData, depth) => {}`  | Function callback when node delete button gets clicked
+onDeleteCb                 | function  | `(node, updatedData, depth) => { return true; }`  | Function callback when node delete button gets clicked
 onExpandToggleCb           | function  | `(node, depth) => {}`               | Function callback when node Expand/Collapse gets toggled
 onUpdateCb                 | function  | `(updatedData, depth) => {}`        | Function callback when data gets updated
 transitionEnterTimeout     | number    | `1200`                              | Time in milliseconds for node appear animation
 transitionExitTimeout      | number    | `1200`                              | Time in milliseconds for node remove animation
 
-### Shoutout
-Shoutout to [@oandrew](https://github.com/oandrew) for suggesting a clean API exposing strategy.
 
-Thank you [@tjhubert](https://github.com/tjhubert) and [@prashanth0926](https://github.com/prashanth0926) for your contribution to the animation feature and the bug fixes.
+### Shoutout
+Shoutout to [Andrew Onyshchuk](https://github.com/oandrew) for suggesting a clean API exposing strategy.
+
+Thank you [TJ Hubert](https://github.com/tjhubert) and [Prashanth Naika](https://github.com/prashanth0926) for your contribution to the animation feature and the bug fixes.
 
 
 ### TODO:
@@ -129,7 +140,7 @@ Thank you [@tjhubert](https://github.com/tjhubert) and [@prashanth0926](https://
 - [ ] Feature: Add click event for text
 - [ ] Feature: Add css class on nodes based on its state i.e `<div class="expanded">Text</div>`
 - [ ] Feature: Stretch goal: Add ability to add custom decorator/element per node
-- [ ] Feature: Provide .scss file with configurable variables
+- [X] Feature: Provide .scss file with configurable variables
 - [ ] Workflow: Provide auto-launch browser feature when examples are run with `npm run examples` 
 - [ ] Performance: Remove the need for lodash
 

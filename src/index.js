@@ -114,16 +114,17 @@ class ExpandableTree extends Component {
     }
 
     printDeleteButton(node) {
-        const { isDeletable, depth } = this.props;
+        const { isDeletable, depth, deleteElement } = this.props;
 
         if (isDeletable(node, depth)) {
             return (
-                <span
-                    className="pull-right glyphicon glyphicon-trash delete-icon"
+                <div className="delete-btn"
                     onClick={() => {
                         this.handleDelete(node);
                     }}
-                />
+                >
+                    {deleteElement}
+                </div>
             );
         }
     }
@@ -206,11 +207,7 @@ class ExpandableTree extends Component {
                 {isEmpty(nodeArray)
                     ? this.printNoChildrenMessage()
                     : nodeArray.map((node, index) => {
-                          const nodeText = get(
-                              node,
-                              keywordLabel,
-                              ''
-                          ).toUpperCase();
+                          const nodeText = get(node, keywordLabel, '');
 
                           return (
                               <CSSTransition
@@ -259,7 +256,7 @@ class ExpandableTree extends Component {
             childrenElement = (
                 <ExpandableTree
                     {...this.props}
-                    data={node[keywordChildren]}
+                    data={node[keywordChildren] || []}
                     depth={depth + 1}
                     onUpdateCb={onChildrenUpdateCb.bind(this)}
                 />
@@ -294,6 +291,8 @@ ExpandableTree.propTypes = {
     data: PropTypes.array.isRequired,
     depth: PropTypes.number,
 
+    deleteElement: PropTypes.element,
+
     getStyleClassCb: PropTypes.func,
 
     isCheckable: PropTypes.func,
@@ -320,6 +319,8 @@ ExpandableTree.propTypes = {
 ExpandableTree.defaultProps = {
     depth: 0,
 
+    deleteElement: <div>(X)</div>,
+
     getStyleClassCb: (/* node, depth */) => {
         return '';
     },
@@ -338,12 +339,12 @@ ExpandableTree.defaultProps = {
     keywordLabel: 'name',
     keywordKey: 'id',
 
-    loadingElement: null,
+    loadingElement: <div>loading...</div>,
 
     noChildrenAvailableMessage: 'No data found',
 
     onCheckToggleCb: (/* Array of nodes, depth */) => {},
-    onDeleteCb: (/* node, updatedData, depth */) => {},
+    onDeleteCb: (/* node, updatedData, depth */) => { return true },
     onExpandToggleCb: (/* node, depth */) => {},
     onUpdateCb: (/* updatedData, depth */) => {},
 
