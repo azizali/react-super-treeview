@@ -26,6 +26,10 @@
     "type": "git",
     "url": "https://github.com/iLoveCodingOrg/expandable-tree.git"
   },
+  "bugs": {
+    "url": "https://github.com/iLoveCodingOrg/expandable-tree/issues"
+  },
+  "homepage": "https://github.com/iLoveCodingOrg/expandable-tree",
   "keywords": [
     "react-component",
     "expandable-tree",
@@ -39,8 +43,8 @@
   "author": "Aziz Ali <aziz@ilovecoding.org>",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react": "^15.6.1 || ^16.0.0",
+    "react-dom": "^15.6.1 || ^16.0.0"
   },
   "dependencies": {
     "lodash": "^4.17.4",
