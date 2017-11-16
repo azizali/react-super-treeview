@@ -23,10 +23,12 @@ export default class extends Component {
                         {
                             id: 21,
                             name: 'Child 1',
+                            isExpanded: true,
                             children: [
                                 {
                                     id: 5,
-                                    name: "Grand Child"
+                                    name: "Grand Child",
+                                    isExpanded: true
                                 }
                             ]
                         },
@@ -64,10 +66,12 @@ export default class extends Component {
                 {
                     id: 21,
                     name: 'Child 1',
+                    isExpanded: true,
                     children: [
                         {
                             id: 5,
-                            name: "Grand Child"
+                            name: "Grand Child",
+                            isExpanded: true
                         }
                     ]
                 },

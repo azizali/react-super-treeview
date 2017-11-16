@@ -42665,9 +42665,11 @@ var _class = function (_Component) {
                 children: [{
                     id: 21,
                     name: 'Child 1',
+                    isExpanded: true,
                     children: [{
                         id: 5,
-                        name: "Grand Child"
+                        name: "Grand Child",
+                        isExpanded: true
                     }]
                 }, {
                     id: 22,
@@ -42689,7 +42691,7 @@ var _class = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            isChecked: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\',\n                    children: [\n                        {\n                            id: 5,\n                            name: "Grand Child"\n                        }\n                    ]\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<ExpandableTree\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n/>';
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            isChecked: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\',\n                    isExpanded: true,\n                    children: [\n                        {\n                            id: 5,\n                            name: "Grand Child",\n                            isExpanded: true\n                        }\n                    ]\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<ExpandableTree\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n/>';
             return _react2.default.createElement(
                 'div',
                 null,

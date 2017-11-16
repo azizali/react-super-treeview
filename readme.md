@@ -30,7 +30,7 @@ Have a unique data model? No worries, ExpandableTree can adapt to the way you ha
 
 Start using the component in just 2 steps.
 
-### Step 1: Import and use compoent in React:
+### Step 1: Import and use component in React:
 
 ```javascript
 import React from 'react';
