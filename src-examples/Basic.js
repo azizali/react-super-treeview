@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ExpandableTree from '../dist/main.js';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { monokai as style } from 'react-syntax-highlighter/dist/styles';
 import '../dist/style.css';
 
 export default class extends Component {
@@ -47,6 +49,51 @@ export default class extends Component {
     }
 
     render(){
+        const codeString = `this.state = {
+    data: [
+        {
+            id: 1,
+            name: 'Parent A'
+        },
+        {
+            id: 2,
+            name: 'Parent B',
+            isExpanded: true,
+            isChecked: true,
+            children: [
+                {
+                    id: 21,
+                    name: 'Child 1',
+                    children: [
+                        {
+                            id: 5,
+                            name: "Grand Child"
+                        }
+                    ]
+                },
+                {
+                    id: 22,
+                    name: 'Child 2'
+                },
+                {
+                    id: 23,
+                    name: 'Child 3'
+                },
+                {
+                    id: 24,
+                    name: 'Child 4'
+                }
+            ]
+        }
+    ]
+}
+
+<ExpandableTree
+    data={ this.state.data }
+    onUpdateCb={(updatedData)=>{
+        this.setState({data: updatedData})
+    }}
+/>`;
         return (
             <div>
                 <h2>Basic</h2>
@@ -67,53 +114,10 @@ export default class extends Component {
                 </div>
 
                 <h5>Source code:</h5>
-                <pre>
-{`this.state = {
-  data: [
-    {
-      id: 1,
-      name: 'Parent A'
-    },
-    {
-      id: 2,
-      name: 'Parent B',
-      isExpanded: true,
-      isChecked: true,
-      children: [
-        {
-          id: 21,
-          name: 'Child 1',
-          children: [
-            {
-              id: 5,
-              name: "Grand Child"
-            }
-          ]
-        },
-        {
-          id: 22,
-          name: 'Child 2'
-        },
-        {
-          id: 23,
-          name: 'Child 3'
-        },
-        {
-          id: 24,
-          name: 'Child 4'
-        }
-      ]
-    }
-  ]
-}
 
-<ExpandableTree
-    data={ this.state.data }
-    onUpdateCb={(updatedData)=>{
-        this.setState({data: updatedData})
-    }}
-/>`}
-                </pre>
+                <SyntaxHighlighter language='javascript' style={style}>
+                    {codeString}
+                </SyntaxHighlighter>
             </div>
         )
     }
