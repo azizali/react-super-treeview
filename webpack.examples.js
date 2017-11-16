@@ -4,10 +4,12 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const examplesFolder = './src-examples/';
+
 module.exports = {
-    entry: './examples/index.js',
+    entry: examplesFolder+'index.js',
     output: {
-        path: path.resolve(__dirname, 'dist-examples'),
+        path: path.resolve(__dirname, 'examples'),
         filename: 'bundle.js'
     },
     module: {
@@ -24,6 +26,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: 'examples/index.html' })
+        new HtmlWebpackPlugin({ template: examplesFolder+'index.html' })
     ]
 }
