@@ -14,8 +14,10 @@ React Component that is highly customizable, which creates unlimited deep nested
 - Granular control over when to show expand, checkbox or delete options
 - Multi-(un)select checkbox (shift + Check) like Gmail
 
+### :star2: [LIVE DEMO](https://ilovecodingorg.github.io/expandable-tree/examples/)
+
 ### How to install
-`npm install expandable-tree`
+`npm install expandable-tree --save`
 
 
 ### Basic Usage
@@ -100,11 +102,14 @@ You can also manually copy the `css/scss` file from `node_modules/expandable-tre
 
 ### Examples
 
-See all the examples in action
+[See all the examples in action](https://ilovecodingorg.github.io/expandable-tree/examples/)
 
+or run them locally by doing this:
 1. Clone this repo
 2. Run `npm install` and then `npm run examples`
-3. Open `./dist-examples/index.html` in browser to see the interactive demo
+
+
+3. Open `./examples/index.html` in browser to see the interactive demo
 
 ### All Prop Options
 Prop                       | Type      | Default Value                       | Description
