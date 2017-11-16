@@ -9,10 +9,6 @@ import Delete from './Delete';
 import Async from './Async';
 import Others from './Others';
 
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
-
 class Page extends Component {
     constructor (){
         super();

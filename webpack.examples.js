@@ -16,7 +16,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                include: /examples/,
+                include: path.resolve(__dirname, 'src-examples'),
                 loaders: ['babel-loader'],
             },
             {

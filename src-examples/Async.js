@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ExpandableTree from '../dist/main.js';
 import { cloneDeep, find } from 'lodash';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { monokai as style } from 'react-syntax-highlighter/dist/styles';
 import '../dist/style.css';
 
 export default class extends Component {
@@ -19,6 +21,53 @@ export default class extends Component {
 
     render(){
         const { state, setState } = this;
+        const codeString = `this.state = {
+    data: [
+        {
+            id: 1,
+            name: 'Parent A'
+        }
+    ]
+}
+
+<ExpandableTree
+    data={ this.state.data }
+    onUpdateCb={(updatedData)=>{
+        this.setState({data: updatedData});
+    }}
+    isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}
+    onExpandToggleCb={(node, depth)=>{
+        // This will show the loading sign
+        node.isChildrenLoading = true;
+
+        setTimeout(()=>{
+            const updatedData = cloneDeep(state.data);
+
+            // Remove loading sign
+            updatedData[0].isChildrenLoading = false;
+
+            // Make sure node is expanded
+            updatedData[0].isExpanded = true;
+
+            // Set Children data that you potentially
+            // got from an API response
+            updatedData[0].children = [
+                {
+                    id: 22,
+                    name: 'Child 1'
+                },
+                {
+                    id: 23,
+                    name: 'Child 2'
+                }
+            ];
+
+            // Update state
+            this.setState({data: updatedData})
+
+        }, 1700);
+    }}
+/>`
         return (
             <div>
                 <h2>Load Data Asynchronously</h2>
@@ -80,55 +129,9 @@ export default class extends Component {
                 </div>
 
                 <h5>Source code:</h5>
-                <pre>
-{`this.state = {
-  data:  [
-    {
-      id: 1,
-      name: 'Parent A'
-    }
-  ]
-}
-
-<ExpandableTree
-    data={ this.state.data }
-    onUpdateCb={(updatedData)=>{
-        this.setState({data: updatedData});
-    }}
-    isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}
-    onExpandToggleCb={(node, depth)=>{
-        // This will show the loading sign
-        node.isChildrenLoading = true;
-
-        setTimeout(()=>{
-            const updatedData = cloneDeep(state.data);
-
-            // Remove loading sign
-            updatedData[0].isChildrenLoading = false;
-
-            // Make sure node is expanded
-            updatedData[0].isExpanded = true;
-
-            // Set Children data that you potentially
-            // got from an API response
-            updatedData[0].children = [
-                {
-                    id: 22,
-                    name: 'Child 1'
-                },
-                {
-                    id: 23,
-                    name: 'Child 2'
-                }
-            ];
-
-            // Update state
-            this.setState({data: updatedData})
-
-        }, 1700);
-    }}
-/>`}
-                </pre>
+                <SyntaxHighlighter language='javascript' style={style}>
+                    {codeString}
+                </SyntaxHighlighter>
             </div>
         )
     }
