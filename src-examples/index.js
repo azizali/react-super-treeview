@@ -65,10 +65,10 @@ class Page extends Component {
                                 col-lg-offset-1 col-lg-10
                             ">
                             <div className="page-header text-center">
-                                <h1>&lt;SuperTreeView /&gt; <small>Examples</small></h1>
+                                <h1>&lt;SuperTreeview /&gt; <small>Examples</small></h1>
                                 <p className="lead">
                                     <u>Working examples</u> with source code of the numerous <br/>
-                                    ways your can use the SuperTreeView component
+                                    ways your can use the SuperTreeview component
                                 </p>
                             </div>
 

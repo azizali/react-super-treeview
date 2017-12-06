@@ -2574,13 +2574,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ExpandableTree = function (_Component) {
-    _inherits(ExpandableTree, _Component);
+var SuperTreeview = function (_Component) {
+    _inherits(SuperTreeview, _Component);
 
-    function ExpandableTree(props) {
-        _classCallCheck(this, ExpandableTree);
+    function SuperTreeview(props) {
+        _classCallCheck(this, SuperTreeview);
 
-        var _this = _possibleConstructorReturn(this, (ExpandableTree.__proto__ || Object.getPrototypeOf(ExpandableTree)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (SuperTreeview.__proto__ || Object.getPrototypeOf(SuperTreeview)).call(this, props));
 
         _this.state = {
             data: (0, _lodash.cloneDeep)(_this.props.data),
@@ -2603,7 +2603,7 @@ var ExpandableTree = function (_Component) {
         return _this;
     }
 
-    _createClass(ExpandableTree, [{
+    _createClass(SuperTreeview, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
             if (!(0, _lodash.isEqual)(nextProps.data, this.props.data)) {
@@ -2732,7 +2732,7 @@ var ExpandableTree = function (_Component) {
         value: function printExpandButton(node) {
             var _this4 = this;
 
-            var className = node.isExpanded ? 'expandable-tree-triangle-btn-down' : 'expandable-tree-triangle-btn-right';
+            var className = node.isExpanded ? 'super-treeview-triangle-btn-down' : 'super-treeview-triangle-btn-right';
             var _props7 = this.props,
                 isExpandable = _props7.isExpandable,
                 depth = _props7.depth;
@@ -2740,7 +2740,7 @@ var ExpandableTree = function (_Component) {
 
             if (isExpandable(node, depth)) {
                 return _react2.default.createElement('div', {
-                    className: 'expandable-tree-triangle-btn ' + className,
+                    className: 'super-treeview-triangle-btn ' + className,
                     onClick: function onClick() {
                         _this4.handleExpandToggle(node);
                     }
@@ -2755,8 +2755,8 @@ var ExpandableTree = function (_Component) {
                 noChildrenAvailableMessage = _props8.noChildrenAvailableMessage;
 
             var noChildrenTransitionProps = {
-                classNames: 'expandable-tree-no-children-transition',
-                key: 'expandable-tree-no-children',
+                classNames: 'super-treeview-no-children-transition',
+                key: 'super-treeview-no-children',
                 style: {
                     transitionDuration: transitionExitTimeout + 'ms',
                     transitionDelay: transitionExitTimeout + 'ms'
@@ -2772,10 +2772,10 @@ var ExpandableTree = function (_Component) {
                 noChildrenTransitionProps,
                 _react2.default.createElement(
                     'div',
-                    { className: 'expandable-tree-no-children' },
+                    { className: 'super-treeview-no-children' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'expandable-tree-no-children-content' },
+                        { className: 'super-treeview-no-children-content' },
                         noChildrenAvailableMessage
                     )
                 )
@@ -2797,7 +2797,7 @@ var ExpandableTree = function (_Component) {
 
 
             var nodeTransitionProps = {
-                classNames: 'expandable-tree-node-transition',
+                classNames: 'super-treeview-node-transition',
                 style: {
                     transitionDuration: transitionEnterTimeout + 'ms'
                 },
@@ -2821,11 +2821,11 @@ var ExpandableTree = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             {
-                                className: 'expandable-tree-node' + getStyleClassCb(node)
+                                className: 'super-treeview-node' + getStyleClassCb(node)
                             },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'expandable-tree-node-content' },
+                                { className: 'super-treeview-node-content' },
                                 printExpandButton(node, depth),
                                 printCheckbox(node, depth),
                                 _react2.default.createElement(
@@ -2833,7 +2833,7 @@ var ExpandableTree = function (_Component) {
                                     {
                                         htmlFor: node.id,
                                         title: nodeText,
-                                        className: 'expandable-tree-text'
+                                        className: 'super-treeview-text'
                                     },
                                     nodeText
                                 ),
@@ -2863,7 +2863,7 @@ var ExpandableTree = function (_Component) {
             if (isChildrenLoading) {
                 childrenElement = (0, _lodash.get)(this.props, 'loadingElement');
             } else {
-                childrenElement = _react2.default.createElement(ExpandableTree, _extends({}, this.props, {
+                childrenElement = _react2.default.createElement(SuperTreeview, _extends({}, this.props, {
                     data: node[keywordChildren] || [],
                     depth: depth + 1,
                     onUpdateCb: onChildrenUpdateCb.bind(this)
@@ -2872,7 +2872,7 @@ var ExpandableTree = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'expandable-tree-children-container' },
+                { className: 'super-treeview-children-container' },
                 childrenElement
             );
 
@@ -2889,16 +2889,16 @@ var ExpandableTree = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'expandable-tree' },
+                { className: 'super-treeview' },
                 this.printNodes(this.state.data)
             );
         }
     }]);
 
-    return ExpandableTree;
+    return SuperTreeview;
 }(_react.Component);
 
-ExpandableTree.propTypes = {
+SuperTreeview.propTypes = {
     data: _propTypes2.default.array.isRequired,
     depth: _propTypes2.default.number,
 
@@ -2927,7 +2927,7 @@ ExpandableTree.propTypes = {
     transitionExitTimeout: _propTypes2.default.number
 };
 
-ExpandableTree.defaultProps = {
+SuperTreeview.defaultProps = {
     depth: 0,
 
     deleteElement: _react2.default.createElement(
@@ -2973,7 +2973,7 @@ ExpandableTree.defaultProps = {
     transitionExitTimeout: 1200
 };
 
-exports.default = ExpandableTree;
+exports.default = SuperTreeview;
 
 /***/ }),
 /* 1 */
@@ -29687,7 +29687,7 @@ var Page = function (_Component) {
                                 _react2.default.createElement(
                                     'h1',
                                     null,
-                                    '<ExpandableTree /> ',
+                                    '<SuperTreeview /> ',
                                     _react2.default.createElement(
                                         'small',
                                         null,
@@ -29704,7 +29704,7 @@ var Page = function (_Component) {
                                     ),
                                     ' with source code of the numerous ',
                                     _react2.default.createElement('br', null),
-                                    'ways your can use the ExpandableTree component'
+                                    'ways your can use the SuperTreeview component'
                                 )
                             )
                         ),
@@ -42691,7 +42691,7 @@ var _class = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            isChecked: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\',\n                    isExpanded: true,\n                    children: [\n                        {\n                            id: 5,\n                            name: "Grand Child",\n                            isExpanded: true\n                        }\n                    ]\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<ExpandableTree\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n/>';
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            isChecked: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\',\n                    isExpanded: true,\n                    children: [\n                        {\n                            id: 5,\n                            name: "Grand Child",\n                            isExpanded: true\n                        }\n                    ]\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<SuperTreeView\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n/>';
             return _react2.default.createElement(
                 'div',
                 null,
@@ -70471,7 +70471,7 @@ exports = module.exports = __webpack_require__(503)(undefined);
 
 
 // module
-exports.push([module.i, ".expandable-tree {\n  font-size: 100%; }\n\n.expandable-tree > div > .expandable-tree-no-children-transition {\n  transition-property: all; }\n\n.expandable-tree > div > .expandable-tree-no-children-transition-enter {\n  opacity: 0;\n  height: 0; }\n\n.expandable-tree > div > .expandable-tree-no-children-transition-enter.expandable-tree-no-children-transition-enter-active {\n  opacity: 1;\n  height: 0; }\n\n.expandable-tree > div > .expandable-tree-no-children > .expandable-tree-no-children-content {\n  margin: 3px 0; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-children-container {\n  margin-left: 5px;\n  padding-left: 20px;\n  border-left: 1px solid #000; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-children-container > .expandable-tree-loading {\n  padding: 0 3px;\n  margin: 3px 0; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-node-content {\n  padding: 0 3px;\n  margin: 3px 0; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-node-content > label {\n  vertical-align: top;\n  text-overflow: ellipsis;\n  width: calc(100% - 55px);\n  overflow: hidden;\n  white-space: nowrap;\n  display: inline-block;\n  margin: 0;\n  font-weight: normal;\n  font-size: 100%; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-node-content > input[type=checkbox] {\n  float: left;\n  margin: 4px 5px 0 0;\n  line-height: normal; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-node-content > .expandable-tree-triangle-btn {\n  float: left;\n  margin-right: 5px;\n  cursor: pointer; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-node-content > .expandable-tree-triangle-btn-right {\n  width: 8px;\n  height: 10px;\n  margin-top: 2px;\n  margin-left: 2px;\n  border-top: 5px solid transparent;\n  border-left: 6px solid #000;\n  border-bottom: 5px solid transparent; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-node-content > .expandable-tree-triangle-btn-down {\n  width: 10px;\n  height: 8px;\n  margin-top: 5px;\n  border-left: 5px solid transparent;\n  border-right: 5px solid transparent;\n  border-top: 6px solid #000; }\n\n.expandable-tree > div > .expandable-tree-node > .expandable-tree-node-content > .delete-btn {\n  float: right;\n  cursor: pointer; }\n\n.expandable-tree > div > .expandable-tree-node-transition {\n  transition-property: all; }\n\n.expandable-tree > div > .expandable-tree-node-transition-enter {\n  opacity: 0; }\n\n.expandable-tree > div > .expandable-tree-node-transition-enter.expandable-tree-node-transition-enter-active {\n  opacity: 1; }\n\n.expandable-tree > div > .expandable-tree-node-transition-exit {\n  opacity: 1; }\n\n.expandable-tree > div > .expandable-tree-node-transition-exit.expandable-tree-node-transition-exit-active {\n  opacity: 0;\n  background-color: red; }\n", ""]);
+exports.push([module.i, ".super-treeview {\n  font-size: 100%; }\n\n.super-treeview > div > .super-treeview-no-children-transition {\n  transition-property: all; }\n\n.super-treeview > div > .super-treeview-no-children-transition-enter {\n  opacity: 0;\n  height: 0;\n  overflow: hidden; }\n\n.super-treeview > div > .super-treeview-no-children-transition-enter.super-treeview-no-children-transition-enter-active {\n  opacity: 1;\n  height: 0; }\n\n.super-treeview > div > .super-treeview-no-children > .super-treeview-no-children-content {\n  margin: 3px 0; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-children-container {\n  margin-left: 8px;\n  padding-left: 20px;\n  border-left: 1px solid #000; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-children-container > .super-treeview-loading {\n  padding: 0 3px;\n  margin: 3px 0; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-node-content {\n  padding: 0 3px;\n  margin: 3px 0; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-node-content > label {\n  vertical-align: top;\n  text-overflow: ellipsis;\n  width: calc(100% - 55px);\n  overflow: hidden;\n  white-space: nowrap;\n  display: inline-block;\n  margin: 0;\n  font-weight: normal;\n  font-size: 100%; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-node-content > input[type=checkbox] {\n  float: left;\n  margin: 4px 5px 0 0;\n  line-height: normal; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-node-content > .super-treeview-triangle-btn {\n  float: left;\n  margin-right: 5px;\n  cursor: pointer; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-node-content > .super-treeview-triangle-btn-right {\n  width: 8px;\n  height: 10px;\n  margin-top: 2px;\n  margin-left: 2px;\n  border-top: 5px solid transparent;\n  border-left: 6px solid #000;\n  border-bottom: 5px solid transparent; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-node-content > .super-treeview-triangle-btn-down {\n  width: 10px;\n  height: 8px;\n  margin-top: 5px;\n  border-left: 5px solid transparent;\n  border-right: 5px solid transparent;\n  border-top: 6px solid #000; }\n\n.super-treeview > div > .super-treeview-node > .super-treeview-node-content > .delete-btn {\n  float: right;\n  cursor: pointer; }\n\n.super-treeview > div > .super-treeview-node-transition {\n  transition-property: all; }\n\n.super-treeview > div > .super-treeview-node-transition-enter {\n  opacity: 0; }\n\n.super-treeview > div > .super-treeview-node-transition-enter.super-treeview-node-transition-enter-active {\n  opacity: 1; }\n\n.super-treeview > div > .super-treeview-node-transition-exit {\n  opacity: 1; }\n\n.super-treeview > div > .super-treeview-node-transition-exit.super-treeview-node-transition-exit-active {\n  opacity: 0;\n  background-color: red; }\n", ""]);
 
 // exports
 
@@ -71089,7 +71089,7 @@ var _class = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            isChecked: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<ExpandableTree\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n    isExpandable={(node, depth)=>{\n\n        // Disallow expansion for all nodes of depth 1\n        // or for node with the id of \'1\'\n        // NOTE: The highest depth is 0, node children are depth+1\n\n        if(depth === 1 || node.id === 1){\n            return false;\n        }else{\n            return true;\n        }\n    }}\n    onExpandToggleCb={(node, depth)=>{\n        const status = (node.isExpanded)? \'open\' : \'close\';\n        alert(\'${node.name} will ${status}\');\n    }}\n/>';
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            isChecked: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<SuperTreeView\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n    isExpandable={(node, depth)=>{\n\n        // Disallow expansion for all nodes of depth 1\n        // or for node with the id of \'1\'\n        // NOTE: The highest depth is 0, node children are depth+1\n\n        if(depth === 1 || node.id === 1){\n            return false;\n        }else{\n            return true;\n        }\n    }}\n    onExpandToggleCb={(node, depth)=>{\n        const status = (node.isExpanded)? \'open\' : \'close\';\n        alert(\'${node.name} will ${status}\');\n    }}\n/>';
             return _react2.default.createElement(
                 'div',
                 null,
@@ -71278,7 +71278,7 @@ var _class = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                },\n                {\n                    id: 25,\n                    name: \'Child 5\'\n                }\n            ]\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n    }\n\n    <ExpandableTree\n        data={ this.state.data }\n        onUpdateCb={(updatedData)=>{\n            this.setState({data: updatedData})\n        }}\n        isCheckable={(node, depth)=>{\n            // hide checkbox for all nodes of depth 1\n            // or for node with the id of `1`\n            // NOTE: The highest depth is 0, node children are depth+1\n            if(depth === 0){\n                return false;\n            }else{\n                return true;\n            }\n        }}\n        onCheckToggleCb={(arrayOfNodes, depth)=>{\n            const nodeCount = arrayOfNodes.length;\n            const status = (arrayOfNodes[0].isChecked)? \'checked\': \'unchecked\'\n            alert(`${nodeCount} node(s) will be ${status} `);\n        }}\n    />';
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                },\n                {\n                    id: 25,\n                    name: \'Child 5\'\n                }\n            ]\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n    }\n\n    <SuperTreeView\n        data={ this.state.data }\n        onUpdateCb={(updatedData)=>{\n            this.setState({data: updatedData})\n        }}\n        isCheckable={(node, depth)=>{\n            // hide checkbox for all nodes of depth 1\n            // or for node with the id of `1`\n            // NOTE: The highest depth is 0, node children are depth+1\n            if(depth === 0){\n                return false;\n            }else{\n                return true;\n            }\n        }}\n        onCheckToggleCb={(arrayOfNodes, depth)=>{\n            const nodeCount = arrayOfNodes.length;\n            const status = (arrayOfNodes[0].isChecked)? \'checked\': \'unchecked\'\n            alert(`${nodeCount} node(s) will be ${status} `);\n        }}\n    />';
             return _react2.default.createElement(
                 'div',
                 null,
@@ -71456,7 +71456,7 @@ var _class = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                }\n            ]\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<ExpandableTree\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n    isDeletable={(node, depth)=>{\n        // Only show Delete button on root level\n        // which is depth = 0\n        // NOTE: The highest/root depth is 0, node children are depth+1\n        if(depth === 0){\n            return true;\n        }else{\n            return false;\n        }\n    }}\n    onDeleteCb={(node, updatedData, depth)=>{\n        alert(`${node.name} will be deleted`);\n        return true;\n    }}\n/>';
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                }\n            ]\n        },\n        {\n            id: 2,\n            name: \'Parent B\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<SuperTreeView\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n    isDeletable={(node, depth)=>{\n        // Only show Delete button on root level\n        // which is depth = 0\n        // NOTE: The highest/root depth is 0, node children are depth+1\n        if(depth === 0){\n            return true;\n        }else{\n            return false;\n        }\n    }}\n    onDeleteCb={(node, updatedData, depth)=>{\n        alert(`${node.name} will be deleted`);\n        return true;\n    }}\n/>';
             return _react2.default.createElement(
                 'div',
                 null,
@@ -71634,7 +71634,7 @@ var _class = function (_Component) {
             var state = this.state,
                 setState = this.setState;
 
-            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        }\n    ]\n}\n\n<ExpandableTree\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData});\n    }}\n    isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}\n    onExpandToggleCb={(node, depth)=>{\n        // This will show the loading sign\n        node.isChildrenLoading = true;\n\n        setTimeout(()=>{\n            const updatedData = cloneDeep(state.data);\n\n            // Remove loading sign\n            updatedData[0].isChildrenLoading = false;\n\n            // Make sure node is expanded\n            updatedData[0].isExpanded = true;\n\n            // Set Children data that you potentially\n            // got from an API response\n            updatedData[0].children = [\n                {\n                    id: 22,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 2\'\n                }\n            ];\n\n            // Update state\n            this.setState({data: updatedData})\n\n        }, 1700);\n    }}\n/>';
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        }\n    ]\n}\n\n<SuperTreeView\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData});\n    }}\n    isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}\n    onExpandToggleCb={(node, depth)=>{\n        // This will show the loading sign\n        node.isChildrenLoading = true;\n\n        setTimeout(()=>{\n            const updatedData = cloneDeep(state.data);\n\n            // Remove loading sign\n            updatedData[0].isChildrenLoading = false;\n\n            // Make sure node is expanded\n            updatedData[0].isExpanded = true;\n\n            // Set Children data that you potentially\n            // got from an API response\n            updatedData[0].children = [\n                {\n                    id: 22,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 2\'\n                }\n            ];\n\n            // Update state\n            this.setState({data: updatedData})\n\n        }, 1700);\n    }}\n/>';
             return _react2.default.createElement(
                 'div',
                 null,

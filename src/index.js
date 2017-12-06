@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { isNil, isEmpty, isEqual, find, get, cloneDeep } from 'lodash';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-class ExpandableTree extends Component {
+class SuperTreeview extends Component {
     constructor(props) {
         super(props);
 
@@ -131,14 +131,14 @@ class ExpandableTree extends Component {
 
     printExpandButton(node) {
         const className = node.isExpanded
-            ? 'expandable-tree-triangle-btn-down'
-            : 'expandable-tree-triangle-btn-right';
+            ? 'super-treeview-triangle-btn-down'
+            : 'super-treeview-triangle-btn-right';
         const { isExpandable, depth } = this.props;
 
         if (isExpandable(node, depth)) {
             return (
                 <div
-                    className={`expandable-tree-triangle-btn ${className}`}
+                    className={`super-treeview-triangle-btn ${className}`}
                     onClick={() => {
                         this.handleExpandToggle(node);
                     }}
@@ -153,8 +153,8 @@ class ExpandableTree extends Component {
             noChildrenAvailableMessage
         } = this.props;
         const noChildrenTransitionProps = {
-            classNames: 'expandable-tree-no-children-transition',
-            key: 'expandable-tree-no-children',
+            classNames: 'super-treeview-no-children-transition',
+            key: 'super-treeview-no-children',
             style: {
                 transitionDuration: `${transitionExitTimeout}ms`,
                 transitionDelay: `${transitionExitTimeout}ms`
@@ -167,8 +167,8 @@ class ExpandableTree extends Component {
 
         return (
             <CSSTransition {...noChildrenTransitionProps}>
-                <div className="expandable-tree-no-children">
-                    <div className="expandable-tree-no-children-content">
+                <div className="super-treeview-no-children">
+                    <div className="super-treeview-no-children-content">
                         {noChildrenAvailableMessage}
                     </div>
                 </div>
@@ -192,7 +192,7 @@ class ExpandableTree extends Component {
         } = this;
 
         const nodeTransitionProps = {
-            classNames: 'expandable-tree-node-transition',
+            classNames: 'super-treeview-node-transition',
             style: {
                 transitionDuration: `${transitionEnterTimeout}ms`
             },
@@ -216,17 +216,17 @@ class ExpandableTree extends Component {
                               >
                                   <div
                                       className={
-                                          'expandable-tree-node' +
+                                          'super-treeview-node' +
                                           getStyleClassCb(node)
                                       }
                                   >
-                                      <div className="expandable-tree-node-content">
+                                      <div className="super-treeview-node-content">
                                           {printExpandButton(node, depth)}
                                           {printCheckbox(node, depth)}
                                           <label
                                               htmlFor={node.id}
                                               title={nodeText}
-                                              className="expandable-tree-text"
+                                              className="super-treeview-text"
                                           >
                                               {nodeText}
                                           </label>
@@ -254,7 +254,7 @@ class ExpandableTree extends Component {
             childrenElement = get(this.props, 'loadingElement');
         } else {
             childrenElement = (
-                <ExpandableTree
+                <SuperTreeview
                     {...this.props}
                     data={node[keywordChildren] || []}
                     depth={depth + 1}
@@ -264,7 +264,7 @@ class ExpandableTree extends Component {
         }
 
         return (
-            <div className="expandable-tree-children-container">
+            <div className="super-treeview-children-container">
                 {childrenElement}
             </div>
         );
@@ -280,14 +280,14 @@ class ExpandableTree extends Component {
 
     render() {
         return (
-            <div className="expandable-tree">
+            <div className="super-treeview">
                 {this.printNodes(this.state.data)}
             </div>
         );
     }
 }
 
-ExpandableTree.propTypes = {
+SuperTreeview.propTypes = {
     data: PropTypes.array.isRequired,
     depth: PropTypes.number,
 
@@ -316,7 +316,7 @@ ExpandableTree.propTypes = {
     transitionExitTimeout: PropTypes.number
 };
 
-ExpandableTree.defaultProps = {
+SuperTreeview.defaultProps = {
     depth: 0,
 
     deleteElement: <div>(X)</div>,
@@ -352,4 +352,4 @@ ExpandableTree.defaultProps = {
     transitionExitTimeout: 1200
 };
 
-export default ExpandableTree;
+export default SuperTreeview;

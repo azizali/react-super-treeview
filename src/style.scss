@@ -1,45 +1,46 @@
 // VARIABLES
-$expandable-tree-text-color: #000;
-$expandable-tree-arrow-color: #000;
-$expandable-tree-tree-stem-color: #000;
+$super-treeview-text-color: #000;
+$super-treeview-arrow-color: #000;
+$super-treeview-tree-stem-color: #000;
 
-.expandable-tree {
+.super-treeview {
   font-size: 100%;
 
   > div {
-    > .expandable-tree-no-children-transition {
+    > .super-treeview-no-children-transition {
       transition-property: all;
     }
 
-    > .expandable-tree-no-children-transition-enter {
+    > .super-treeview-no-children-transition-enter {
       opacity: 0;
       height: 0;
+      overflow: hidden;
 
-      &.expandable-tree-no-children-transition-enter-active {
+      &.super-treeview-no-children-transition-enter-active {
         opacity: 1;
         height: 0;
       }
     }
 
-    > .expandable-tree-no-children {
-      > .expandable-tree-no-children-content {
+    > .super-treeview-no-children {
+      > .super-treeview-no-children-content {
         margin: 3px 0;
       }
     }
 
-    > .expandable-tree-node {
-      > .expandable-tree-children-container {
-        margin-left: 5px;
+    > .super-treeview-node {
+      > .super-treeview-children-container {
+        margin-left: 8px;
         padding-left: 20px;
-        border-left: 1px solid $expandable-tree-tree-stem-color;
+        border-left: 1px solid $super-treeview-tree-stem-color;
 
-        > .expandable-tree-loading {
+        > .super-treeview-loading {
           padding: 0 3px;
           margin: 3px 0;
         }
       }
 
-      > .expandable-tree-node-content {
+      > .super-treeview-node-content {
         padding: 0 3px;
         margin: 3px 0;
 
@@ -61,29 +62,29 @@ $expandable-tree-tree-stem-color: #000;
           line-height: normal;
         }
 
-        > .expandable-tree-triangle-btn {
+        > .super-treeview-triangle-btn {
           float: left;
           margin-right: 5px;
           cursor: pointer;
         }
 
-        > .expandable-tree-triangle-btn-right {
+        > .super-treeview-triangle-btn-right {
           width: 8px;
           height: 10px;
           margin-top: 2px;
           margin-left: 2px;
           border-top: 5px solid transparent;
-          border-left: 6px solid $expandable-tree-arrow-color;
+          border-left: 6px solid $super-treeview-arrow-color;
           border-bottom: 5px solid transparent;
         }
 
-        > .expandable-tree-triangle-btn-down {
+        > .super-treeview-triangle-btn-down {
           width: 10px;
           height: 8px;
           margin-top: 5px;
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
-          border-top: 6px solid $expandable-tree-arrow-color;
+          border-top: 6px solid $super-treeview-arrow-color;
         }
 
         > .delete-btn {
@@ -93,22 +94,22 @@ $expandable-tree-tree-stem-color: #000;
       }
     }
 
-    > .expandable-tree-node-transition {
+    > .super-treeview-node-transition {
       transition-property: all;
     }
 
-    > .expandable-tree-node-transition-enter {
+    > .super-treeview-node-transition-enter {
       opacity: 0;
 
-      &.expandable-tree-node-transition-enter-active {
+      &.super-treeview-node-transition-enter-active {
         opacity: 1;
       }
     }
 
-    > .expandable-tree-node-transition-exit {
+    > .super-treeview-node-transition-exit {
       opacity: 1;
 
-      &.expandable-tree-node-transition-exit-active {
+      &.super-treeview-node-transition-exit-active {
         opacity: 0;
         background-color: red;
       }
