@@ -35,37 +35,41 @@ export default class extends Component {
     onUpdateCb={(updatedData)=>{
         this.setState({data: updatedData});
     }}
+    isCheckable={()=>(false)}
+    isDeletable={()=>(false)}
     isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}
     onExpandToggleCb={(node, depth)=>{
-        // This will show the loading sign
-        node.isChildrenLoading = true;
+        if(node.isExpanded === true){
+            // This will show the loading sign
+            node.isChildrenLoading = true;
 
-        setTimeout(()=>{
-            const updatedData = cloneDeep(state.data);
+            setTimeout(()=>{
+                const updatedData = cloneDeep(state.data);
 
-            // Remove loading sign
-            updatedData[0].isChildrenLoading = false;
+                // Remove loading sign
+                updatedData[0].isChildrenLoading = false;
 
-            // Make sure node is expanded
-            updatedData[0].isExpanded = true;
+                // Make sure node is expanded
+                updatedData[0].isExpanded = true;
 
-            // Set Children data that you potentially
-            // got from an API response
-            updatedData[0].children = [
-                {
-                    id: 22,
-                    name: 'Child 1'
-                },
-                {
-                    id: 23,
-                    name: 'Child 2'
-                }
-            ];
+                // Set Children data that you potentially
+                // got from an API response
+                updatedData[0].children = [
+                    {
+                        id: 22,
+                        name: 'Child 1'
+                    },
+                    {
+                        id: 23,
+                        name: 'Child 2'
+                    }
+                ];
 
-            // Update state
-            this.setState({data: updatedData})
+                // Update state
+                this.setState({data: updatedData})
 
-        }, 1700);
+            }, 1700);
+        }
     }}
 />`
         return (
@@ -90,37 +94,42 @@ export default class extends Component {
                                     onUpdateCb={(updatedData)=>{
                                         this.setState({data: updatedData});
                                     }}
+                                    isCheckable={()=>(false)}
+                                    isDeletable={()=>(false)}
                                     isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}
                                     onExpandToggleCb={(node, depth)=>{
-                                        // This will show the loading sign
-                                        node.isChildrenLoading = true;
 
-                                        setTimeout(()=>{
-                                            const updatedData = cloneDeep(state.data);
+                                        if(node.isExpanded === true){
+                                            // This will show the loading sign
+                                            node.isChildrenLoading = true;
 
-                                            // Remove loading sign
-                                            updatedData[0].isChildrenLoading = false;
+                                            setTimeout(()=>{
+                                                const updatedData = cloneDeep(state.data);
 
-                                            // Make sure node is expanded
-                                            updatedData[0].isExpanded = true;
+                                                // Remove loading sign
+                                                updatedData[0].isChildrenLoading = false;
 
-                                            // Set Children data that you potentially
-                                            // got from an API response
-                                            updatedData[0].children = [
-                                                {
-                                                    id: 22,
-                                                    name: 'Child 1'
-                                                },
-                                                {
-                                                    id: 23,
-                                                    name: 'Child 2'
-                                                }
-                                            ];
+                                                // Make sure node is expanded
+                                                updatedData[0].isExpanded = true;
 
-                                            // Update state
-                                            this.setState({data: updatedData})
+                                                // Set Children data that you potentially
+                                                // got from an API response
+                                                updatedData[0].children = [
+                                                    {
+                                                        id: 22,
+                                                        name: 'Child 1'
+                                                    },
+                                                    {
+                                                        id: 23,
+                                                        name: 'Child 2'
+                                                    }
+                                                ];
 
-                                        }, 1700);
+                                                // Update state
+                                                this.setState({data: updatedData})
+
+                                            }, 1700);
+                                        }
                                     }}
                                 />
                             </div>

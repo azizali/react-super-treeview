@@ -29599,9 +29599,9 @@ var _Async = __webpack_require__(509);
 
 var _Async2 = _interopRequireDefault(_Async);
 
-var _Others = __webpack_require__(510);
+var _CheckChildren = __webpack_require__(511);
 
-var _Others2 = _interopRequireDefault(_Others);
+var _CheckChildren2 = _interopRequireDefault(_CheckChildren);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29655,8 +29655,8 @@ var Page = function (_Component) {
                 case 'async-load':
                     return _react2.default.createElement(_Async2.default, null);
                     break;
-                case 'others':
-                    return _react2.default.createElement(_Others2.default, null);
+                case 'check-children':
+                    return _react2.default.createElement(_CheckChildren2.default, null);
                     break;
                 default:
                     return _react2.default.createElement(_Basic2.default, null);
@@ -29775,9 +29775,9 @@ var Page = function (_Component) {
                                     _react2.default.createElement(
                                         'a',
                                         { onClick: function onClick() {
-                                                _this2.handleClick('others');
+                                                _this2.handleClick('check-children');
                                             } },
-                                        'Others'
+                                        'Check/Uncheck all children'
                                     )
                                 )
                             )
@@ -71634,7 +71634,7 @@ var _class = function (_Component) {
             var state = this.state,
                 setState = this.setState;
 
-            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        }\n    ]\n}\n\n<SuperTreeView\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData});\n    }}\n    isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}\n    onExpandToggleCb={(node, depth)=>{\n        // This will show the loading sign\n        node.isChildrenLoading = true;\n\n        setTimeout(()=>{\n            const updatedData = cloneDeep(state.data);\n\n            // Remove loading sign\n            updatedData[0].isChildrenLoading = false;\n\n            // Make sure node is expanded\n            updatedData[0].isExpanded = true;\n\n            // Set Children data that you potentially\n            // got from an API response\n            updatedData[0].children = [\n                {\n                    id: 22,\n                    name: \'Child 1\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 2\'\n                }\n            ];\n\n            // Update state\n            this.setState({data: updatedData})\n\n        }, 1700);\n    }}\n/>';
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 1,\n            name: \'Parent A\'\n        }\n    ]\n}\n\n<SuperTreeView\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData});\n    }}\n    isCheckable={()=>(false)}\n    isDeletable={()=>(false)}\n    isExpandable={(node, depth)=>{ return (depth===0)? true : false; }}\n    onExpandToggleCb={(node, depth)=>{\n        if(node.isExpanded === true){\n            // This will show the loading sign\n            node.isChildrenLoading = true;\n\n            setTimeout(()=>{\n                const updatedData = cloneDeep(state.data);\n\n                // Remove loading sign\n                updatedData[0].isChildrenLoading = false;\n\n                // Make sure node is expanded\n                updatedData[0].isExpanded = true;\n\n                // Set Children data that you potentially\n                // got from an API response\n                updatedData[0].children = [\n                    {\n                        id: 22,\n                        name: \'Child 1\'\n                    },\n                    {\n                        id: 23,\n                        name: \'Child 2\'\n                    }\n                ];\n\n                // Update state\n                this.setState({data: updatedData})\n\n            }, 1700);\n        }\n    }}\n/>';
             return _react2.default.createElement(
                 'div',
                 null,
@@ -71718,35 +71718,44 @@ var _class = function (_Component) {
                                     onUpdateCb: function onUpdateCb(updatedData) {
                                         _this2.setState({ data: updatedData });
                                     },
+                                    isCheckable: function isCheckable() {
+                                        return false;
+                                    },
+                                    isDeletable: function isDeletable() {
+                                        return false;
+                                    },
                                     isExpandable: function isExpandable(node, depth) {
                                         return depth === 0 ? true : false;
                                     },
                                     onExpandToggleCb: function onExpandToggleCb(node, depth) {
-                                        // This will show the loading sign
-                                        node.isChildrenLoading = true;
 
-                                        setTimeout(function () {
-                                            var updatedData = (0, _lodash.cloneDeep)(state.data);
+                                        if (node.isExpanded === true) {
+                                            // This will show the loading sign
+                                            node.isChildrenLoading = true;
 
-                                            // Remove loading sign
-                                            updatedData[0].isChildrenLoading = false;
+                                            setTimeout(function () {
+                                                var updatedData = (0, _lodash.cloneDeep)(state.data);
 
-                                            // Make sure node is expanded
-                                            updatedData[0].isExpanded = true;
+                                                // Remove loading sign
+                                                updatedData[0].isChildrenLoading = false;
 
-                                            // Set Children data that you potentially
-                                            // got from an API response
-                                            updatedData[0].children = [{
-                                                id: 22,
-                                                name: 'Child 1'
-                                            }, {
-                                                id: 23,
-                                                name: 'Child 2'
-                                            }];
+                                                // Make sure node is expanded
+                                                updatedData[0].isExpanded = true;
 
-                                            // Update state
-                                            _this2.setState({ data: updatedData });
-                                        }, 1700);
+                                                // Set Children data that you potentially
+                                                // got from an API response
+                                                updatedData[0].children = [{
+                                                    id: 22,
+                                                    name: 'Child 1'
+                                                }, {
+                                                    id: 23,
+                                                    name: 'Child 2'
+                                                }];
+
+                                                // Update state
+                                                _this2.setState({ data: updatedData });
+                                            }, 1700);
+                                        }
                                     }
                                 })
                             )
@@ -71773,7 +71782,8 @@ var _class = function (_Component) {
 exports.default = _class;
 
 /***/ }),
-/* 510 */
+/* 510 */,
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71792,6 +71802,12 @@ var _react2 = _interopRequireDefault(_react);
 var _main = __webpack_require__(17);
 
 var _main2 = _interopRequireDefault(_main);
+
+var _reactSyntaxHighlighter = __webpack_require__(28);
+
+var _reactSyntaxHighlighter2 = _interopRequireDefault(_reactSyntaxHighlighter);
+
+var _styles = __webpack_require__(29);
 
 __webpack_require__(22);
 
@@ -71813,19 +71829,29 @@ var _class = function (_Component) {
 
         _this.state = {
             data: [{
-                id: 1,
-                name: 'Parent A'
-            }, {
                 id: 2,
-                name: 'Parent B',
+                name: 'Check/uncheck all children',
                 isExpanded: true,
-                isChecked: true,
                 children: [{
                     id: 21,
                     name: 'Child 1',
+                    isExpanded: true,
                     children: [{
                         id: 5,
-                        name: "Grand Child"
+                        name: "Grand Child 1",
+                        isExpanded: false
+                    }, {
+                        id: 6,
+                        name: "Grand Child 2",
+                        isExpanded: false
+                    }, {
+                        id: 7,
+                        name: "Grand Child 3",
+                        isExpanded: false
+                    }, {
+                        id: 8,
+                        name: "Grand Child 4",
+                        isExpanded: false
                     }]
                 }, {
                     id: 22,
@@ -71845,13 +71871,16 @@ var _class = function (_Component) {
     _createClass(_class, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var codeString = 'this.state = {\n    data: [\n        {\n            id: 2,\n            name: \'Check/uncheck all children\',\n            isExpanded: true,\n            children: [\n                {\n                    id: 21,\n                    name: \'Child 1\',\n                    isExpanded: true,\n                    children: [\n                        {\n                            id: 5,\n                            name: "Grand Child 1",\n                            isExpanded: false,\n                        },\n                        {\n                            id: 6,\n                            name: "Grand Child 2",\n                            isExpanded: false,\n                        },\n                        {\n                            id: 7,\n                            name: "Grand Child 3",\n                            isExpanded: false,\n                        },\n                        {\n                            id: 8,\n                            name: "Grand Child 4",\n                            isExpanded: false,\n                        }\n                    ]\n                },\n                {\n                    id: 22,\n                    name: \'Child 2\'\n                },\n                {\n                    id: 23,\n                    name: \'Child 3\'\n                },\n                {\n                    id: 24,\n                    name: \'Child 4\'\n                }\n            ]\n        }\n    ]\n}\n\n<SuperTreeView\n    data={ this.state.data }\n    onUpdateCb={(updatedData)=>{\n        this.setState({data: updatedData})\n    }}\n    onCheckToggleCb={(nodes)=>{\n        const checkState = nodes[0].isChecked;\n\n        applyCheckStateTo(nodes);\n\n        function applyCheckStateTo(nodes){\n            nodes.forEach((node)=>{\n                node.isChecked = checkState\n                if(node.children){\n                    applyCheckStateTo(node.children);\n                }\n            })\n        }\n    }}\n/>';
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(
                     'h2',
                     null,
-                    'Other examples'
+                    'Check/Uncheck all children'
                 ),
                 _react2.default.createElement('hr', null),
                 _react2.default.createElement(
@@ -71860,8 +71889,45 @@ var _class = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-xs-12 col-lg-8 col-md-8' },
-                        'Coming soon'
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'panel panel-default' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'panel-body' },
+                                _react2.default.createElement(_main2.default, {
+                                    data: this.state.data,
+                                    onCheckToggleCb: function onCheckToggleCb(nodes) {
+                                        var checkState = nodes[0].isChecked;
+
+                                        applyCheckStateTo(nodes);
+
+                                        function applyCheckStateTo(nodes) {
+                                            nodes.forEach(function (node) {
+                                                node.isChecked = checkState;
+                                                if (node.children) {
+                                                    applyCheckStateTo(node.children);
+                                                }
+                                            });
+                                        }
+                                    },
+                                    onUpdateCb: function onUpdateCb(updatedData) {
+                                        _this2.setState({ data: updatedData });
+                                    }
+                                })
+                            )
+                        )
                     )
+                ),
+                _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Source code:'
+                ),
+                _react2.default.createElement(
+                    _reactSyntaxHighlighter2.default,
+                    { language: 'javascript', style: _styles.monokai },
+                    codeString
                 )
             );
         }

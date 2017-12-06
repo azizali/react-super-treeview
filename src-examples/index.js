@@ -7,7 +7,7 @@ import ExpandCollapse from './ExpandCollapse';
 import Checkbox from './Checkbox';
 import Delete from './Delete';
 import Async from './Async';
-import Others from './Others';
+import CheckChildren from './CheckChildren';
 
 class Page extends Component {
     constructor (){
@@ -44,8 +44,8 @@ class Page extends Component {
             case 'async-load':
                 return <Async />
                 break;
-            case 'others':
-                return <Others />
+            case 'check-children':
+                return <CheckChildren />
                 break;
             default:
                 return <Basic />
@@ -83,7 +83,7 @@ class Page extends Component {
                                 <li className="list-group-item"><a onClick={()=>{ this.handleClick('checkbox') }}>Checkbox options</a></li>
                                 <li className="list-group-item"><a onClick={()=>{ this.handleClick('delete') }}>Delete options</a></li>
                                 <li className="list-group-item"><a onClick={()=>{ this.handleClick('async-load') }}>Asychronously load tree children</a></li>
-                                <li className="list-group-item"><a onClick={()=>{ this.handleClick('others') }}>Others</a></li>
+                                <li className="list-group-item"><a onClick={()=>{ this.handleClick('check-children') }}>Check/Uncheck all children</a></li>
                             </ul>
                         </div>
                         <div className="
