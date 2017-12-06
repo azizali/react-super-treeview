@@ -1,4 +1,4 @@
-Expandable Tree Component
+React Super Treeview
 ===
 
 :clap: Finally, a React Treview component which is customizable on every level.
@@ -8,7 +8,7 @@ Expandable Tree Component
 
 Have a unique data model? No worries, ExpandableTree can adapt to the way you have your data structured. 
 
-## :star2: [SEE DEMO](https://ilovecodingorg.github.io/expandable-tree/examples/)
+## :star2: [SEE DEMO](https://azizali.github.io/react-super-treeview/examples/)
 
 ## Full Features
 - Expand/Collapse
