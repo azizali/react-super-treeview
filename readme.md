@@ -1,12 +1,12 @@
 React Super Treeview
 ===
 
-:clap: Finally, a React Treview component which is customizable on every level.
+:clap: Finally, a React Treeview component which is customizable on every level.
 - Add checkboxes
 - Custom delete button
 - and even lazy-load data asynchronously
 
-Have a unique data model? No worries, ExpandableTree can adapt to the way you have your data structured. 
+Have a unique data model? No worries, SuperTreeview can adapt to the way you have your data structured. 
 
 ## :star2: [SEE DEMO](https://azizali.github.io/react-super-treeview/examples/)
 
@@ -24,7 +24,7 @@ Have a unique data model? No worries, ExpandableTree can adapt to the way you ha
 - Control the node adding/delete animation speed
 
 ## How to install
-`npm install expandable-tree --save`
+`npm install react-super-treeview --save`
 
 ## Basic Usage
 
@@ -35,7 +35,7 @@ Start using the component in just 2 steps.
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ExpandableTree from 'expandable-tree';
+import SuperTreeview from 'react-super-treeview';
 
 class Example extends React.Component {
     constructor(){
@@ -72,7 +72,7 @@ class Example extends React.Component {
     render(){
         return (
             // RENDER THE COMPONENT
-            <ExpandableTree
+            <SuperTreeview
                 data={ this.state.data }
                 onUpdateCb={(updatedData) => {
                     this.setState({data: updatedData})
@@ -87,9 +87,9 @@ ReactDOM.render(<Example/>, document.getElementById('app'););
 
 ### Step 2: Import styles to project
 
-Import ExpandableTree styles with `css` or `scss` file.
+Import SuperTreeview styles with `css` or `scss` file.
 
-The styles are in `node_modules/expandable-tree/dist/style.css or style.scss`
+The styles are in `node_modules/react-super-treeview/dist/style.css or style.scss`
 
 Note: When you use the `scss` file, you can modify the style variables for quick styling.
 
@@ -98,18 +98,18 @@ Note: When you use the `scss` file, you can modify the style variables for quick
 If you are using webpack, put this in your project's styles.
 
 ```
-~expandable-tree/dist/style.css 
+~react-super-treeview/dist/style.css 
 ```
 or `scss` 
 ```
-~expandable-tree/dist/style.scss
+~react-super-treeview/dist/style.scss
 ```
 
 the tilda `~` tells webpack to pick-up the file from `node_modules` folder
 
 #### Manually importing styles
 
-You can also manually copy the `css`/`scss` file from `node_modules/expandable-tree/dist/style.(s)css` and put it in your project files
+You can also manually copy the `css`/`scss` file from `node_modules/react-super-treeview/dist/style.(s)css` and put it in your project files
 
 ## Mulit-select feature built in
 
@@ -119,7 +119,7 @@ You can also manually copy the `css`/`scss` file from `node_modules/expandable-t
 
 ## Run Examples locally
 
-[See all the examples in action](https://ilovecodingorg.github.io/expandable-tree/examples/)
+[See all the examples in action](https://azizali.github.io/react-super-treeview/examples/)
 
 or run them locally by doing this:
 1. Clone this repo
@@ -187,7 +187,7 @@ This function runs on every node while rendering. This allows you to add custom 
 
 #### Add class to all nodes
 ```js
-<ExpandableTree 
+<SuperTreeview 
     data={data}
     getStyleClassCb={ ()=>{ return 'class-name-to-add'; } }
 />
@@ -195,7 +195,7 @@ This function runs on every node while rendering. This allows you to add custom 
 
 #### Add class to all childrens which are two level deep
 ```js
-<ExpandableTree 
+<SuperTreeview 
     data={data}
     getStyleClassCb={ (node, depth)=>{ 
         return (depth === 1)? 'class-name-to-add' : '';
@@ -251,7 +251,7 @@ Example: if you have all the children data in the key `group`
 
 set it like such
 ```js
-<ExpandableTree 
+<SuperTreeview 
     data={data}
     keywordChildren='group' // << Like such
 />
@@ -279,7 +279,7 @@ Example:
 
 If you want a key other than `isChildrenLoading` key to identify the loading state, you can modify it like such:
 ```js
-<ExpandableTree 
+<SuperTreeview 
     data={data}
     keywordChildrenLoading='yourCustomKeyForLoading' // << Like such
 />
@@ -315,7 +315,7 @@ Example:
 
 If you want a key other than `name` key, modify it like such:
 ```js
-<ExpandableTree 
+<SuperTreeview 
     data={data}
     keywordLabel='text' // << Like such
 />
@@ -343,7 +343,7 @@ Message that shows when the expanded node has no children.
 Function callback when checkbox gets toggled.
 
 The callback provides an array of nodes (`arrayOfNodes`) that got checked/unchecked.
-Since `<ExpandableTree />`  has a multi-select feature, hence its an array here.
+Since `<SuperTreeview />`  has a multi-select feature, hence its an array here.
 All nodes will have the same `isChecked` state, either `true` or `false`.
 
 The callback also provides the `depth` of the node that got checked/unchecked.
@@ -406,4 +406,4 @@ Thank you [TJ Hubert](https://github.com/tjhubert) and [Prashanth Naika](https:/
 
 ### License
 
-ExpandableTree is [MIT licensed](./LICENSE).
+SuperTreeview is [MIT licensed](./LICENSE).

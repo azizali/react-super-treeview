@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ExpandableTree from '../dist/main.js';
+import SuperTreeView from '../dist/main.js';
 import '../dist/style.css';
 
 export default class extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ExpandableTree from '../dist/main.js';
+import SuperTreeView from '../dist/main.js';
 import { cloneDeep, find } from 'lodash';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monokai as style } from 'react-syntax-highlighter/dist/styles';
@@ -30,7 +30,7 @@ export default class extends Component {
     ]
 }
 
-<ExpandableTree
+<SuperTreeView
     data={ this.state.data }
     onUpdateCb={(updatedData)=>{
         this.setState({data: updatedData});
@@ -85,7 +85,7 @@ export default class extends Component {
                     <div className="col-xs-12 col-lg-8 col-md-8">
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <ExpandableTree
+                                <SuperTreeView
                                     data={ this.state.data }
                                     onUpdateCb={(updatedData)=>{
                                         this.setState({data: updatedData});
