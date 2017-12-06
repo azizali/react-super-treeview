@@ -6,7 +6,7 @@ configure({ adapter: new Adapter() });
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import ExpandableTree from './';
+import SuperTreeview from './';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
@@ -49,7 +49,7 @@ const standardProps = {
 };
 
 
-describe('<ExpandableTree />', () => {
+describe('<SuperTreeview />', () => {
     let sandbox, component, componentInstance, componentWrapElement;
 
     beforeEach(() => {
@@ -61,14 +61,14 @@ describe('<ExpandableTree />', () => {
     });
 
     describe('componentWillMount()', () => {
-        component = shallow(<ExpandableTree {...standardProps} />);
-        componentWrapElement = component.find('.expandable-tree');
+        component = shallow(<SuperTreeview {...standardProps} />);
+        componentWrapElement = component.find('.super-treeview');
         let transitionGroupElement = componentWrapElement.find(
             'TransitionGroup'
         );
 
         it('should print node wrapper', () => {
-            expect(component.find('.expandable-tree')).to.have.length(1);
+            expect(component.find('.super-treeview')).to.have.length(1);
         });
 
         it('should print all nodes', () => {
@@ -83,10 +83,10 @@ describe('<ExpandableTree />', () => {
             const numberOfChildren = standardProps.data[1].children.length;
 
             const secondChildComponent = component
-                .find('ExpandableTree')
+                .find('SuperTreeview')
                 .dive();
             const expandableClass = secondChildComponent.find(
-                '.expandable-tree'
+                '.super-treeview'
             );
 
             expect(expandableClass.find('CSSTransition')).to.have.length(
@@ -153,7 +153,7 @@ describe('<ExpandableTree />', () => {
         });
 
         it('should show toggle button', () => {
-            const toggleBtnSelector = '.expandable-tree-triangle-btn';
+            const toggleBtnSelector = '.super-treeview-triangle-btn';
             expect(
                 transitionGroupElement.childAt(0).find(toggleBtnSelector)
             ).to.have.length(1);
@@ -172,8 +172,8 @@ describe('<ExpandableTree />', () => {
                 },
                 ...standardProps
             };
-            component = shallow(<ExpandableTree {...props} />);
-            componentWrapElement = component.find('.expandable-tree');
+            component = shallow(<SuperTreeview {...props} />);
+            componentWrapElement = component.find('.super-treeview');
 
             const checkboxSelector = 'input[type="checkbox"]';
 
@@ -196,8 +196,8 @@ describe('<ExpandableTree />', () => {
                 ...standardProps
             };
 
-            component = shallow(<ExpandableTree {...props} />)
-            componentWrapElement = component.find('.expandable-tree');
+            component = shallow(<SuperTreeview {...props} />)
+            componentWrapElement = component.find('.super-treeview');
 
             const deleteBtnSelector = 'span.glyphicon-trash';
 
@@ -219,10 +219,10 @@ describe('<ExpandableTree />', () => {
                 },
                 ...standardProps
             };
-            component = shallow(<ExpandableTree {...props} />)
-            componentWrapElement = component.find('.expandable-tree');
+            component = shallow(<SuperTreeview {...props} />)
+            componentWrapElement = component.find('.super-treeview');
 
-            const toggleBtnSelector = 'expandable-tree-triangle-btn';
+            const toggleBtnSelector = 'super-treeview-triangle-btn';
 
             expect(
                 componentWrapElement.childAt(0).find(toggleBtnSelector)
@@ -247,7 +247,7 @@ describe('<ExpandableTree />', () => {
         component, sandbox;
 
         beforeEach(() => {
-            component = shallow(<ExpandableTree {...standardProps} />);
+            component = shallow(<SuperTreeview {...standardProps} />);
             sandbox = sinon.sandbox.create();
         });
 
@@ -256,7 +256,7 @@ describe('<ExpandableTree />', () => {
         });
 
         it('should update props', () => {
-            let setStateSpy = sandbox.spy(ExpandableTree.prototype, 'setState');
+            let setStateSpy = sandbox.spy(SuperTreeview.prototype, 'setState');
 
             component.setProps({ data: newData });
             expect(setStateSpy).to.have.been.calledOnce;
@@ -272,7 +272,7 @@ describe('<ExpandableTree />', () => {
                 onUpdateCb: onUpdateCbStub,
                 ...standardProps
             };
-            component = shallow(<ExpandableTree {...props} />)
+            component = shallow(<SuperTreeview {...props} />)
         });
 
         it('should call onUpdateCb()', () => {
@@ -296,7 +296,7 @@ describe('<ExpandableTree />', () => {
                 onCheckToggleCb: onCheckToggleCbStub,
                 ...standardProps
             };
-            component = shallow(<ExpandableTree {...props} />)
+            component = shallow(<SuperTreeview {...props} />)
 
             componentInstance = component.instance();
             handleCheckToggleSpy = sandbox.spy(
@@ -306,14 +306,14 @@ describe('<ExpandableTree />', () => {
             handleUpdateStub = sandbox.spy(componentInstance, 'handleUpdate');
 
             checkbox = component
-                .find('.expandable-tree')
+                .find('.super-treeview')
                 .find('TransitionGroup')
                 .childAt(0)
                 .find(checkboxSelector);
         });
 
         it('should set lastCheckToggledNodeIndex to currentNode', () => {
-            let setStateSpy = sandbox.spy(ExpandableTree.prototype, 'setState');
+            let setStateSpy = sandbox.spy(SuperTreeview.prototype, 'setState');
 
             checkbox.simulate('click', { target: { checked: false } });
 
@@ -394,7 +394,7 @@ describe('<ExpandableTree />', () => {
                     component.setState({ lastCheckToggledNodeIndex: 1 });
 
                     checkbox4 = component
-                        .find('.expandable-tree')
+                        .find('.super-treeview')
                         .find('TransitionGroup')
                         .childAt(3)
                         .find(checkboxSelector);
@@ -443,7 +443,7 @@ describe('<ExpandableTree />', () => {
                 beforeEach(() => {
                     // When 1st checkbox was previously toggled
                     component.setState({ lastCheckToggledNodeIndex: 0 });
-                    componentWrapElement = component.find('.expandable-tree');
+                    componentWrapElement = component.find('.super-treeview');
                     transitionGroupElement = componentWrapElement.find(
                         'TransitionGroup'
                     );
@@ -487,23 +487,23 @@ describe('<ExpandableTree />', () => {
         it('should call printNoChildrenMessage when nodeArray is empty', () => {
             const noChildrenAvailableMessage = 'Test This No children Message';
             const printNoChildrenMessage = sandbox.spy(
-                ExpandableTree.prototype,
+                SuperTreeview.prototype,
                 'printNoChildrenMessage'
             );
             const props = {
                 ...standardProps,
                 noChildrenAvailableMessage
             };
-            component = shallow(<ExpandableTree {...props} />)
+            component = shallow(<SuperTreeview {...props} />)
             component.instance().printNodes([]);
             expect(printNoChildrenMessage).to.be.calledOnce;
         });
         it('should return nodes when nodeArray is not empty', () => {
             const nodeArray = [{}, {}, {}];
-            component = shallow(<ExpandableTree {...standardProps} />);
+            component = shallow(<SuperTreeview {...standardProps} />);
             const nodes = component.instance().printNodes(nodeArray);
             const nodesElement = shallow(nodes);
-            expect(nodesElement.find('.expandable-tree-node')).to.have.length(
+            expect(nodesElement.find('.super-treeview-node')).to.have.length(
                 nodeArray.length
             );
         });
@@ -513,7 +513,7 @@ describe('<ExpandableTree />', () => {
         let component, componentInstance;
 
         it('should return null when isExpanded is false', () => {
-            component = shallow(<ExpandableTree {...standardProps} />);
+            component = shallow(<SuperTreeview {...standardProps} />);
             componentInstance = component.instance();
             const node = { isExpanded: false };
             expect(componentInstance.printChildren(node)).to.be.equal(null);
@@ -527,15 +527,15 @@ describe('<ExpandableTree />', () => {
                     ...standardProps,
                     loadingElement
                 };
-                component = shallow(<ExpandableTree {...props} />)
+                component = shallow(<SuperTreeview {...props} />)
                 componentInstance = component.instance();
                 const node = { isExpanded: true, isChildrenLoading: true };
                 const children = shallow(componentInstance.printChildren(node));
                 expect(children.find(`#${loadingId}`)).to.have.length(1);
             });
 
-            it('should return ExpandableTree when isChildrenLoading is false', () => {
-                component = shallow(<ExpandableTree {...standardProps} />);
+            it('should return SuperTreeview when isChildrenLoading is false', () => {
+                component = shallow(<SuperTreeview {...standardProps} />);
                 componentInstance = component.instance();
                 const node = {
                     isExpanded: true,
@@ -543,7 +543,7 @@ describe('<ExpandableTree />', () => {
                     children: [{}, {}, {}]
                 };
                 const children = shallow(componentInstance.printChildren(node));
-                expect(children.find('ExpandableTree')).to.have.length(1);
+                expect(children.find('SuperTreeview')).to.have.length(1);
             });
         });
     });
@@ -563,14 +563,14 @@ describe('<ExpandableTree />', () => {
                 onDeleteCb: onDeleteCbStub,
                 ...standardProps
             };
-            component = shallow(<ExpandableTree {...props} />)
+            component = shallow(<SuperTreeview {...props} />)
 
             componentInstance = component.instance();
 
             handleUpdateSpy = sandbox.spy(componentInstance, 'handleUpdate');
 
             deleteBtn = component
-                .find('.expandable-tree')
+                .find('.super-treeview')
                 .find('TransitionGroup')
                 .childAt(0)
                 .find(deleteBtnSelector);
@@ -607,15 +607,15 @@ describe('<ExpandableTree />', () => {
         it('should delete child node', () => {
             onDeleteCbStub.returns(true);
 
-            let childExpandableTree = component
-                .find('.expandable-tree')
+            let childSuperTreeview = component
+                .find('.super-treeview')
                 .find('TransitionGroup')
                 .childAt(1)
-                .find('ExpandableTree')
+                .find('SuperTreeview')
                 .dive();
 
-            let childDeleteBtn = childExpandableTree
-                .find('.expandable-tree')
+            let childDeleteBtn = childSuperTreeview
+                .find('.super-treeview')
                 .find('TransitionGroup')
                 .childAt(0)
                 .find(deleteBtnSelector);
@@ -638,7 +638,7 @@ describe('<ExpandableTree />', () => {
             onExpandToggleCbStub = sandbox.stub();
 
             handleExpandToggleSpy = sandbox.spy(
-                ExpandableTree.prototype,
+                SuperTreeview.prototype,
                 'handleExpandToggle'
             );
 
@@ -647,11 +647,11 @@ describe('<ExpandableTree />', () => {
                 ...standardProps
             };
 
-            component = shallow(<ExpandableTree {...props} />)
+            component = shallow(<SuperTreeview {...props} />)
 
-            const expandToggleBtnSelector = '.expandable-tree-triangle-btn';
+            const expandToggleBtnSelector = '.super-treeview-triangle-btn';
             expandToggleBtn = component
-                .find('.expandable-tree')
+                .find('.super-treeview')
                 .find('TransitionGroup')
                 .childAt(0)
                 .find(expandToggleBtnSelector);
