@@ -5,7 +5,7 @@ React Super Treeview
 
 Add remove nodes, put your own animation, load data asynchronously, and even multi-select
 
-## :star2: [SEE DEMO](https://azizali.github.io/react-super-treeview/examples/)
+## :star2: [See Demo w/ Example code](https://azizali.github.io/react-super-treeview/examples/)
 
 ### Gif feature demo
 ![alt text](./src-examples/everything.gif "Example")
@@ -113,28 +113,28 @@ You can also manually copy the `css`/`scss` file from `node_modules/react-super-
 
 
 ## All Props
-* isRequired
+isRequired *
 
-| Props | Type | Default | Description |
-|-------|-------|-------|-------|-------|
-|`data` * | array | none | Data that will be displayed in the tree.
-|`onUpdateCb` * | function | none | Function callback when data gets changed (deleted, expanded/collapsed, checked/unchecked).
-|`depth` | number | 0 | Value that tracks the depth of the node tree. The root/highest depth is 0. Children nodes are depth+1 upto infinity.
-|`getStyleClassCb`| function | `(node, depth) => { return ' '; }` | Return the class name string you want to add on the node.
-|`isCheckable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide checkbox on node.
-|`isDeletable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide delete button on node.
-|`isExpandable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide expand/collapse button (►) on node.
-|`keywordChildren`| string | `'children'`| Set the `key` where the component should look for the children elements.
-|`keywordChildrenLoading`| string| `'isChildrenLoading'`|Set the `key` that indicates if the children nodes are loading or now. If `true` then the `loadingElement` is shown. NOTE: Make sure that the node is expanded (`isExpanded: true`) for the `loadingElement`.
-| `keywordKey`| string | `'id'` | This is the value that is set as the `key` attribute on the node (`<div key={keywordKey}> node name </div>`). It defaults to the `id` key. This must be a unique key, if not provided or is not unique, will break the animation feature.
-|`keywordLabel`|string|`'name'` | The node text is printed from the `name` key. If you want some other key value to be printed, provide the key here.
-|`loadingElement`| element | `<div>loading...</div>`|Element that shows when data is being loading. Provide your custom loading element with this prop.
-|`noChildrenAvailableMessage` | string | `'no data found'` |Message that shows when the expanded node has no children.
-|`onCheckToggleCb`| function |`(arrayOfNodes, depth) => {}`|Function callback when checkbox gets toggled. The callback provides an array of nodes (`arrayOfNodes`) that got checked/unchecked. Since `<SuperTreeview />`  has a multi-select feature, hence its an array here. All nodes will have the same `isChecked` state, either `true` or `false`. The callback also provides the `depth` of the node that got checked/unchecked.
-|`onDeleteCb`|function|`(node, updatedData, depth) => { return true; }`|Function callback when node delete button gets clicked. The callback provides the `node` being deleted, its `depth`, and the updated data (`updatedData`) with the deleted node removed. Return `true` if you want to proceed with the deletion, and `false` if you do not want to delete the node. Returning `true` will trigger the `onUpdateCb()` prop, discussed below.
-|`onExpandToggleCb`|function| `(node, depth) => {}`|Function callback when node Expands/Collapses. The callback function provides the `node` that got toggled, and its `depth`.
-|`transitionEnterTimeout`|number|`1200`|Time in milliseconds for node appear animation.
-|`transitionExitTimeout`|number|`1200`|Time in milliseconds for node remove
+Props  | Type  | Default  | Description
+--- | --- | --- | ---
+`data` * | array | none | Data that will be displayed in the tree.
+`onUpdateCb` * | function | none | Function callback when data gets changed (deleted, expanded/collapsed, checked/unchecked).
+`depth` | number | 0 | Value that tracks the depth of the node tree. The root/highest depth is 0. Children nodes are depth+1 upto infinity.
+`getStyleClassCb`| function | `(node, depth) => { return ' '; }` | Return the class name string you want to add on the node.
+`isCheckable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide checkbox on node.
+`isDeletable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide delete button on node.
+`isExpandable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide expand/collapse button (►) on node.
+`keywordChildren`| string | `'children'`| Set the `key` where the component should look for the children elements.
+`keywordChildrenLoading`| string| `'isChildrenLoading'`|Set the `key` that indicates if the children nodes are loading or now. If `true` then the `loadingElement` is shown. NOTE: Make sure that the node is expanded (`isExpanded: true`) for the `loadingElement`.
+`keywordKey`| string | `'id'` | This is the value that is set as the `key` attribute on the node (`<div key={keywordKey}> node name </div>`). It defaults to the `id` key. This must be a unique key, if not provided or is not unique, will break the animation feature.
+`keywordLabel`|string|`'name'` | The node text is printed from the `name` key. If you want some other key value to be printed, provide the key here.
+`loadingElement`| element | `<div>loading...</div>`|Element that shows when data is being loading. Provide your custom loading element with this prop.
+`noChildrenAvailableMessage` | string | `'no data found'` |Message that shows when the expanded node has no children.
+`onCheckToggleCb`| function |`(arrayOfNodes, depth) => {}`|Function callback when checkbox gets toggled. The callback provides an array of nodes (`arrayOfNodes`) that got checked/unchecked. Since `<SuperTreeview />`  has a multi-select feature, hence its an array here. All nodes will have the same `isChecked` state, either `true` or `false`. The callback also provides the `depth` of the node that got checked/unchecked.
+`onDeleteCb`|function|`(node, updatedData, depth) => { return true; }`|Function callback when node delete button gets clicked. The callback provides the `node` being deleted, its `depth`, and the updated data (`updatedData`) with the deleted node removed. Return `true` if you want to proceed with the deletion, and `false` if you do not want to delete the node. Returning `true` will trigger the `onUpdateCb()` prop, discussed below.
+`onExpandToggleCb`|function| `(node, depth) => {}`|Function callback when node Expands/Collapses. The callback function provides the `node` that got toggled, and its `depth`.
+`transitionEnterTimeout`|number|`1200`|Time in milliseconds for node appear animation.
+`transitionExitTimeout`|number|`1200`|Time in milliseconds for node remove
 
 ## Data Format
 ```
