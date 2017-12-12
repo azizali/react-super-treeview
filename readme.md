@@ -3,14 +3,15 @@ React Super Treeview
 
 :clap: Finally, a React Treeview component which is customizable on every level.
 
-Add remove nodes, put your own animation, load data asynchronously, and even multi-select
+Add/remove nodes, put your own animation, load data asynchronously, and even multi-select
 
 ## :star2: [See Demo w/ Example code](https://azizali.github.io/react-super-treeview/examples/)
 
-### Gif feature demo
+**Gif feature demo**
+
 ![alt text](./src-examples/everything.gif "Example")
 
-### `shift + click` multi-select gmail style
+**`shift + click` multi-select gmail-style**
 
 ![alt text](./src-examples/multi-select.gif "Multi-select")
 
@@ -113,13 +114,13 @@ You can also manually copy the `css`/`scss` file from `node_modules/react-super-
 
 
 ## All Props
-isRequired *
+Required Props *
 
 Props  | Type  | Default  | Description
 --- | --- | --- | ---
 `data` * | array | none | Data that will be displayed in the tree.
 `onUpdateCb` * | function | none | Function callback when data gets changed (deleted, expanded/collapsed, checked/unchecked).
-`depth` | number | 0 | Value that tracks the depth of the node tree. The root/highest depth is 0. Children nodes are depth+1 upto infinity.
+`depth` | number | `0` | Value that tracks the depth of the node tree. The root/highest depth is 0. Children nodes are depth+1 upto infinity.
 `getStyleClassCb`| function | `(node, depth) => { return ' '; }` | Return the class name string you want to add on the node.
 `isCheckable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide checkbox on node.
 `isDeletable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide delete button on node.
