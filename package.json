@@ -17,7 +17,7 @@
     "test": "./node_modules/mocha-webpack/bin/mocha-webpack --webpack-config webpack.test.js \"src/**/*.test.js\"",
     "test:watch": "./node_modules/mocha-webpack/bin/mocha-webpack -w --webpack-config webpack.test.js \"src/**/*.test.js\"",
     "examples": "npm run clean:examples && npm run build && ./node_modules/webpack/bin/webpack.js --config webpack.examples.js",
-    "examples-dev": "./node_modules/webpack/bin/webpack.js --config webpack.examples.js --watch",
+    "examples:dev": "./node_modules/webpack/bin/webpack.js --config webpack.examples.js --watch",
     "build": "npm run clean:dist && npm test && ./node_modules/webpack/bin/webpack.js",
     "preversion": "npm run build",
     "prepublishOnly": "npm run build"

@@ -8,6 +8,7 @@ import Checkbox from './Checkbox';
 import Delete from './Delete';
 import Async from './Async';
 import CheckChildren from './CheckChildren';
+import Everything from './Everything';
 
 class Page extends Component {
     constructor (){
@@ -29,6 +30,8 @@ class Page extends Component {
 
     router(hash){
         switch (hash) {
+            case 'everything':
+                return <Everything />
             case 'basic':
                 return <Basic />
                 break;
