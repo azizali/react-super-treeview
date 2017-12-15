@@ -121,6 +121,7 @@ Props  | Type  | Default  | Description
 `data` * | array | none | Data that will be displayed in the tree.
 `onUpdateCb` * | function | none | Function callback when data gets changed (deleted, expanded/collapsed, checked/unchecked).
 `depth` | number | `0` | Value that tracks the depth of the node tree. The root/highest depth is 0. Children nodes are depth+1 upto infinity.
+`deleteElement`| element | `<div>(X)</div>`| Element that displays as the delete button.
 `getStyleClassCb`| function | `(node, depth) => { return ' '; }` | Return the class name string you want to add on the node.
 `isCheckable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide checkbox on node.
 `isDeletable`| function | `(node, depth) => { return true; }`| Return `true/false` to show/hide delete button on node.
