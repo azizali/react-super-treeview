@@ -23,12 +23,14 @@ $super-treeview-tree-stem-color: #000;
     }
 
     > .super-treeview-no-children {
+      overflow: hidden;
       > .super-treeview-no-children-content {
-        margin: 3px 0;
+        margin: 2px 0;
       }
     }
 
     > .super-treeview-node {
+      overflow: hidden;
       > .super-treeview-children-container {
         margin-left: 8px;
         padding-left: 20px;
@@ -36,13 +38,13 @@ $super-treeview-tree-stem-color: #000;
 
         > .super-treeview-loading {
           padding: 0 3px;
-          margin: 3px 0;
+          margin: 2px 0;
         }
       }
 
       > .super-treeview-node-content {
         padding: 0 3px;
-        margin: 3px 0;
+        margin: 2px 0;
 
         > label {
           vertical-align: top;
