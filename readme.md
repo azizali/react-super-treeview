@@ -167,7 +167,7 @@ npm test
 ## Shoutout
 Shoutout to [Andrew Onyshchuk](https://github.com/oandrew) for suggesting a clean API exposing strategy.
 
-Thank you [TJ Hubert](https://github.com/tjhubert) and [Prashanth Naika](https://github.com/prashanth0926) for your contribution to the animation feature and the bug fixes.
+Thank you [TJ Hubert](https://github.com/tjhubert) and [Prashanth Naika](https://github.com/pnaika) for your contribution to the animation feature and the bug fixes.
 
 
 ### TODO:
