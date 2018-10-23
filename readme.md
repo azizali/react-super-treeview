@@ -46,28 +46,30 @@ class Example extends React.Component {
     constructor(){
         super();
         // SET YOUR DATA
-        this.state.data = [
-            {
-                id: 1,
-                name: 'Parent A'
-            },
-            {
-                id: 2,
-                name: 'Parent B',
-                isExpanded: true,
-                isChecked: true,
-                children: [
-                    {
-                        id: 1,
-                        name: 'Child 1'
-                    },
-                    {
-                        id: 2,
-                        name: 'Child 2'
-                    }
-                ]
-            }
-        ];
+        this.state = {
+            data: [
+                {
+                    id: 1,
+                    name: 'Parent A'
+                },
+                {
+                    id: 2,
+                    name: 'Parent B',
+                    isExpanded: true,
+                    isChecked: true,
+                    children: [
+                        {
+                            id: 1,
+                            name: 'Child 1'
+                        },
+                        {
+                            id: 2,
+                            name: 'Child 2'
+                        }
+                    ]
+                }
+            ]
+        };
     }
 
     render(){
