@@ -182,7 +182,8 @@ class SuperTreeview extends Component {
             depth,
             transitionEnterTimeout,
             transitionExitTimeout,
-            getStyleClassCb
+            getStyleClassCb,
+            isExpandable
         } = this.props;
         const {
             printExpandButton,
@@ -204,39 +205,39 @@ class SuperTreeview extends Component {
 
         return (
             <TransitionGroup>
-                {isEmpty(nodeArray)
+                {isEmpty(nodeArray) && isExpandable(nodeArray, depth)
                     ? this.printNoChildrenMessage()
                     : nodeArray.map((node, index) => {
-                          const nodeText = get(node, keywordLabel, '');
+                        const nodeText = get(node, keywordLabel, '');
 
-                          return (
-                              <CSSTransition
-                                  {...nodeTransitionProps}
-                                  key={node.id || index}
-                              >
-                                  <div
-                                      className={
-                                          'super-treeview-node' +
-                                          getStyleClassCb(node)
-                                      }
-                                  >
-                                      <div className="super-treeview-node-content">
-                                          {printExpandButton(node, depth)}
-                                          {printCheckbox(node, depth)}
-                                          <label
-                                              htmlFor={node.id}
-                                              title={nodeText}
-                                              className="super-treeview-text"
-                                          >
-                                              {nodeText}
-                                          </label>
-                                          {printDeleteButton(node, depth)}
-                                      </div>
-                                      {printChildren(node)}
-                                  </div>
-                              </CSSTransition>
-                          );
-                      })}
+                        return (
+                            <CSSTransition
+                                {...nodeTransitionProps}
+                                key={node.id || index}
+                            >
+                                <div
+                                    className={
+                                        'super-treeview-node' +
+                                        getStyleClassCb(node)
+                                    }
+                                >
+                                    <div className="super-treeview-node-content">
+                                        {printExpandButton(node, depth)}
+                                        {printCheckbox(node, depth)}
+                                        <label
+                                            htmlFor={node.id}
+                                            title={nodeText}
+                                            className="super-treeview-text"
+                                        >
+                                            {nodeText}
+                                        </label>
+                                        {printDeleteButton(node, depth)}
+                                    </div>
+                                    {printChildren(node)}
+                                </div>
+                            </CSSTransition>
+                        );
+                    })}
             </TransitionGroup>
         );
     }
@@ -343,10 +344,10 @@ SuperTreeview.defaultProps = {
 
     noChildrenAvailableMessage: 'No data found',
 
-    onCheckToggleCb: (/* Array of nodes, depth */) => {},
+    onCheckToggleCb: (/* Array of nodes, depth */) => { },
     onDeleteCb: (/* node, updatedData, depth */) => { return true },
-    onExpandToggleCb: (/* node, depth */) => {},
-    onUpdateCb: (/* updatedData, depth */) => {},
+    onExpandToggleCb: (/* node, depth */) => { },
+    onUpdateCb: (/* updatedData, depth */) => { },
 
     transitionEnterTimeout: 1200,
     transitionExitTimeout: 1200
