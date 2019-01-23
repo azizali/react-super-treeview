@@ -73,6 +73,10 @@ $super-treeview-tree-stem-color: #000;
           margin-right: 5px;
           cursor: pointer;
         }
+        
+        > .super-treeview-triangle-btn-none {
+          cursor: none;
+        }
 
         > .super-treeview-triangle-btn-right {
           width: 8px;

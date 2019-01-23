@@ -26,7 +26,13 @@ export default class extends Component {
                         },
                         {
                             id: 22,
-                            name: 'Child 2'
+                            name: 'Child 2',
+                            children: [
+                                {
+                                    id:21,
+                                    name: 'Grand child'
+                                }
+                            ]
                         },
                         {
                             id: 23,
@@ -61,7 +67,13 @@ export default class extends Component {
                 },
                 {
                     id: 22,
-                    name: 'Child 2'
+                    name: 'Child 2',
+                    children: [
+                        {
+                            id:21,
+                            name: 'Grand child'
+                        }
+                    ]
                 },
                 {
                     id: 23,
@@ -83,11 +95,13 @@ export default class extends Component {
     }}
     isExpandable={(node, depth)=>{
 
+        // Allow expansion for node with id 21,
         // Disallow expansion for all nodes of depth 1
         // or for node with the id of '1'
         // NOTE: The highest depth is 0, node children are depth+1
-
-        if(depth === 1 || node.id === 1){
+        if(node.id === 21){
+            return true
+        }else if(depth === 1 || node.id === 1){
             return false;
         }else{
             return true;
@@ -118,10 +132,13 @@ export default class extends Component {
                                         this.setState({data: updatedData})
                                     }}
                                     isExpandable={(node, depth)=>{
+                                        // Allow expansion for node with id 21,
                                         // Disallow expansion for all nodes of depth 1
                                         // or for node with the id of `1`
                                         // NOTE: The highest depth is 0, node children are depth+1
-                                        if(depth === 1 || node.id === 1){
+                                        if(node.id === 21){
+                                            return true
+                                        }else if(depth === 1 || node.id === 1){
                                             return false;
                                         }else{
                                             return true;

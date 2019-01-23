@@ -144,6 +144,8 @@ class SuperTreeview extends Component {
                     }}
                 />
             );
+        } else {
+            return <div className={`super-treeview-triangle-btn super-treeview-triangle-btn-none`} />
         }
     }
 
