@@ -180,6 +180,7 @@ class SuperTreeview extends Component {
 
     printNodes(nodeArray) {
         const {
+            keywordKey,
             keywordLabel,
             depth,
             transitionEnterTimeout,
@@ -214,7 +215,7 @@ class SuperTreeview extends Component {
                           return (
                               <CSSTransition
                                   {...nodeTransitionProps}
-                                  key={node.id || index}
+                                  key={node[keywordKey] || index}
                               >
                                   <div
                                       className={

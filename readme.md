@@ -174,7 +174,7 @@ Thank you [TJ Hubert](https://github.com/tjhubert) and [Prashanth Naika](https:/
 
 ### TODO:
 
-- [ ] Bug: `keywordKey` prop is not being applied
+- [X] Bug: `keywordKey` prop is not being applied
 - [ ] Feature: Make user friendly prop names for `keywordKey`, `keywordChildren` etc
 - [ ] Performance: Remove the need for lodash
 - [ ] Feature: Stretch goal: Add ability to add custom decorator/element per node

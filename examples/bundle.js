@@ -2326,6 +2326,7 @@ var SuperTreeview = function (_Component) {
         key: 'printNodes',
         value: function printNodes(nodeArray) {
             var _props9 = this.props,
+                keywordKey = _props9.keywordKey,
                 keywordLabel = _props9.keywordLabel,
                 depth = _props9.depth,
                 transitionEnterTimeout = _props9.transitionEnterTimeout,
@@ -2357,7 +2358,7 @@ var SuperTreeview = function (_Component) {
                     return _react2.default.createElement(
                         _reactTransitionGroup.CSSTransition,
                         _extends({}, nodeTransitionProps, {
-                            key: node.id || index
+                            key: node[keywordKey] || index
                         }),
                         _react2.default.createElement(
                             'div',
