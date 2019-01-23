@@ -3,6 +3,10 @@ $super-treeview-text-color: #000;
 $super-treeview-arrow-color: #000;
 $super-treeview-tree-stem-color: #000;
 
+.super-treeview * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
 .super-treeview {
   font-size: 100%;
 
