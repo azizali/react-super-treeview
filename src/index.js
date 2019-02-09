@@ -1,7 +1,12 @@
 import './style.scss';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { isNil, isEmpty, isEqual, find, get, cloneDeep } from 'lodash';
+import isNil from 'lodash/isNil';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import cloneDeep from 'lodash/cloneDeep';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class SuperTreeview extends Component {
