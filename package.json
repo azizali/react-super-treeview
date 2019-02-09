@@ -1,6 +1,6 @@
 {
   "name": "react-super-treeview",
-  "version": "0.3.3-beta.0",
+  "version": "0.3.3",
   "description": "React Super Treeview",
   "main": "dist/main.js",
   "engines": {
