@@ -101,13 +101,13 @@ class SuperTreeview extends Component {
     }
 
     printCheckbox(node) {
-        const { isCheckable, keywordLabel, depth } = this.props;
+        const { isCheckable, keywordName, depth } = this.props;
 
         if (isCheckable(node, depth)) {
             return (
                 <input
                     type="checkbox"
-                    name={node[keywordLabel]}
+                    name={node[keywordName]}
                     onClick={(e) => {
                         this.handleCheckToggle(node, e);
                     }}
@@ -186,6 +186,7 @@ class SuperTreeview extends Component {
     printNodes(nodeArray) {
         const {
             keywordKey,
+            keywordName,
             keywordLabel,
             depth,
             transitionEnterTimeout,
@@ -216,6 +217,7 @@ class SuperTreeview extends Component {
                     ? this.printNoChildrenMessage()
                     : nodeArray.map((node, index) => {
                           const nodeText = get(node, keywordLabel, '');
+                          const nodeName = get(node, keywordName, '');
 
                           return (
                               <CSSTransition
@@ -311,6 +313,7 @@ SuperTreeview.propTypes = {
     keywordChildrenLoading: PropTypes.string,
     keywordKey: PropTypes.string,
     keywordLabel: PropTypes.string,
+    keywordName: PropTypes.string,
 
     loadingElement: PropTypes.element,
     noChildrenAvailableMessage: PropTypes.string,
@@ -345,6 +348,7 @@ SuperTreeview.defaultProps = {
     keywordChildren: 'children',
     keywordChildrenLoading: 'isChildrenLoading',
     keywordLabel: 'name',
+    keywordName: 'name',
     keywordKey: 'id',
 
     loadingElement: <div>loading...</div>,

@@ -2227,14 +2227,14 @@ var SuperTreeview = function (_Component) {
 
             var _props5 = this.props,
                 isCheckable = _props5.isCheckable,
-                keywordLabel = _props5.keywordLabel,
+                keywordName = _props5.keywordName,
                 depth = _props5.depth;
 
 
             if (isCheckable(node, depth)) {
                 return _react2.default.createElement('input', {
                     type: 'checkbox',
-                    name: node[keywordLabel],
+                    name: node[keywordName],
                     onClick: function onClick(e) {
                         _this2.handleCheckToggle(node, e);
                     },
@@ -2354,6 +2354,7 @@ var SuperTreeview = function (_Component) {
                 null,
                 (0, _lodash.isEmpty)(nodeArray) ? this.printNoChildrenMessage() : nodeArray.map(function (node, index) {
                     var nodeText = (0, _lodash.get)(node, keywordLabel, '');
+                    var nodeName = (0, _lodash.get)(node, keywordName, '');
 
                     return _react2.default.createElement(
                         _reactTransitionGroup.CSSTransition,
