@@ -4,8 +4,8 @@
   "description": "React Super Treeview",
   "main": "dist/main.js",
   "engines": {
-    "node": "^6.7.0",
-    "npm": "^4.0.0"
+    "node": ">=6.7.0",
+    "npm": ">=4.0.0"
   },
   "files": [
     "dist"
