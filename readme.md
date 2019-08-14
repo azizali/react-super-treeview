@@ -131,7 +131,8 @@ Props  | Type  | Default  | Description
 `keywordChildren`| string | `'children'`| Set the `key` where the component should look for the children elements.
 `keywordChildrenLoading`| string| `'isChildrenLoading'`|Set the `key` that indicates if the children nodes are loading or now. If `true` then the `loadingElement` is shown. NOTE: Make sure that the node is expanded (`isExpanded: true`) for the `loadingElement`.
 `keywordKey`| string | `'id'` | This is the value that is set as the `key` attribute on the node (`<div key={keywordKey}> node name </div>`). It defaults to the `id` key. This must be a unique key, if not provided or is not unique, will break the animation feature.
-`keywordLabel`|string|`'name'` | The node text is printed from the `name` key. If you want some other key value to be printed, provide the key here.
+`keywordName`|string|`'name'` | The node text is printed from the `name` key. If you want some other key value to be printed, provide the key here.
+`keywordLabel`|string|`'name'` | The node label text is printed from the `name` key. If you want some other key value to be printed, provide the key here.
 `loadingElement`| element | `<div>loading...</div>`|Element that shows when data is being loading. Provide your custom loading element with this prop.
 `noChildrenAvailableMessage` | string | `'no data found'` |Message that shows when the expanded node has no children.
 `onCheckToggleCb`| function |`(arrayOfNodes, depth) => {}`|Function callback when checkbox gets toggled. The callback provides an array of nodes (`arrayOfNodes`) that got checked/unchecked. Since `<SuperTreeview />`  has a multi-select feature, hence its an array here. All nodes will have the same `isChecked` state, either `true` or `false`. The callback also provides the `depth` of the node that got checked/unchecked.
