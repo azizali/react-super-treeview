@@ -35,10 +35,16 @@ const config = {
     },
     plugins: [
         new ExtractTextPlugin('style.css'),
-        new CopyWebpackPlugin([{
-            from: 'src/style.scss',
-            dest: 'dist/[name].[ext]'
-        }])
+        new CopyWebpackPlugin([
+            {
+                from: 'src/style.scss',
+                dest: 'dist/[name].[ext]'
+            },
+            {
+                from: 'src/index.d.ts',
+                dest: 'dist/main.d.ts'
+            }
+        ])
     ],
 
     externals: [
