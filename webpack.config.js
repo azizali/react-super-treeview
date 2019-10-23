@@ -37,12 +37,10 @@ const config = {
         new ExtractTextPlugin('style.css'),
         new CopyWebpackPlugin([
             {
-                from: 'src/style.scss',
-                dest: 'dist/[name].[ext]'
+                from: 'src/style.scss'
             },
             {
-                from: 'src/index.d.ts',
-                dest: 'dist/main.d.ts'
+                from: 'src/index.d.ts'
             }
         ])
     ],
