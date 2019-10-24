@@ -629,7 +629,8 @@ describe('<SuperTreeview />', () => {
     describe('handleExpandToggle()', () => {
         let component,
             onExpandToggleCbStub,
-            expandToggleBtn,
+            firstExpandToggleBtn,
+            secondExpandToggleBtn,
             handleExpandToggleSpy;
 
         beforeEach(() => {
@@ -650,7 +651,12 @@ describe('<SuperTreeview />', () => {
             component = shallow(<SuperTreeview {...props} />)
 
             const expandToggleBtnSelector = '.super-treeview-triangle-btn';
-            expandToggleBtn = component
+            firstExpandToggleBtn = component
+                .find('.super-treeview')
+                .find('TransitionGroup')
+                .childAt(0)
+                .find(expandToggleBtnSelector);
+            secondExpandToggleBtn = component
                 .find('.super-treeview')
                 .find('TransitionGroup')
                 .childAt(1)
@@ -658,8 +664,15 @@ describe('<SuperTreeview />', () => {
         });
 
         it('should toggle tree on expand', () => {
-            expandToggleBtn.simulate('click');
+            secondExpandToggleBtn.simulate('click');
 
+            expect(handleExpandToggleSpy).have.been.calledOnce;
+            expect(onExpandToggleCbStub).have.been.calledOnce;
+
+            firstExpandToggleBtn.simulate('click');
+
+            // still only fired once because there is no expand button for the first data element
+            // because it has no children
             expect(handleExpandToggleSpy).have.been.calledOnce;
             expect(onExpandToggleCbStub).have.been.calledOnce;
         });
