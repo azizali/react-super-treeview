@@ -190,7 +190,8 @@ class SuperTreeview extends Component {
             depth,
             transitionEnterTimeout,
             transitionExitTimeout,
-            getStyleClassCb
+            getStyleClassCb,
+            noChildrenAvailableMessage
         } = this.props;
         const {
             printExpandButton,
@@ -212,7 +213,7 @@ class SuperTreeview extends Component {
 
         return (
             <TransitionGroup>
-                {isEmpty(nodeArray)
+                {isEmpty(nodeArray) && noChildrenAvailableMessage
                     ? this.printNoChildrenMessage()
                     : nodeArray.map((node, index) => {
                           const nodeText = get(node, keywordLabel, '');
@@ -338,8 +339,8 @@ SuperTreeview.defaultProps = {
     isDeletable: (/* node, depth */) => {
         return true;
     },
-    isExpandable: (/* node, depth */) => {
-        return true;
+    isExpandable: (node, depth) => {
+        return node.children && node.children.length > 0;
     },
 
     keywordChildren: 'children',

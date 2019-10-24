@@ -653,7 +653,7 @@ describe('<SuperTreeview />', () => {
             expandToggleBtn = component
                 .find('.super-treeview')
                 .find('TransitionGroup')
-                .childAt(0)
+                .childAt(1)
                 .find(expandToggleBtnSelector);
         });
 
