@@ -315,13 +315,13 @@ describe('<SuperTreeview />', () => {
         it('should set lastCheckToggledNodeIndex to currentNode', () => {
             let setStateSpy = sandbox.spy(SuperTreeview.prototype, 'setState');
 
-            checkbox.simulate('click', { target: { checked: false } });
+            checkbox.simulate('change', { target: { checked: false } });
 
             expect(setStateSpy).to.have.been.calledOnce;
         });
 
         it('should update data', () => {
-            checkbox.simulate('click', { target: { checked: false } });
+            checkbox.simulate('change', { target: { checked: false } });
             expect(handleUpdateStub).to.have.been.calledOnce;
         });
 
@@ -330,7 +330,7 @@ describe('<SuperTreeview />', () => {
                 let event = { target: { checked: true } };
                 let node = standardProps.data[0];
 
-                checkbox.simulate('click', event);
+                checkbox.simulate('change', event);
 
                 expect(handleCheckToggleSpy).to.have.been.calledWith(
                     node,
@@ -342,7 +342,7 @@ describe('<SuperTreeview />', () => {
                 let event = { target: { checked: false } };
                 let node = standardProps.data[0];
 
-                checkbox.simulate('click', event);
+                checkbox.simulate('change', event);
 
                 expect(handleCheckToggleSpy).to.have.been.calledWith(
                     node,
@@ -356,7 +356,7 @@ describe('<SuperTreeview />', () => {
                 let node = standardProps.data[0];
                 node.isChecked = event.target.checked;
 
-                checkbox.simulate('click', event);
+                checkbox.simulate('change', event);
 
                 expect(onCheckToggleCbStub).to.have.been.calledWith(
                     [node],
@@ -379,7 +379,7 @@ describe('<SuperTreeview />', () => {
             });
 
             it('should have "lastCheckToggledNodeIndex" as "number" on subsequent toggles', () => {
-                checkbox.simulate('click', event);
+                checkbox.simulate('change', event);
 
                 expect(
                     componentInstance.state.lastCheckToggledNodeIndex
@@ -398,7 +398,7 @@ describe('<SuperTreeview />', () => {
                         .find('TransitionGroup')
                         .childAt(3)
                         .find(checkboxSelector);
-                    checkbox4.simulate('click', event);
+                    checkbox4.simulate('change', event);
                 });
 
                 it('should call "onCheckToggleCbStub" once', () => {
@@ -451,7 +451,7 @@ describe('<SuperTreeview />', () => {
                     checkbox3 = transitionGroupElement
                         .childAt(2)
                         .find(checkboxSelector);
-                    checkbox3.simulate('click', eventUncheck);
+                    checkbox3.simulate('change', eventUncheck);
                 });
 
                 it('should call "onCheckToggleCbStub" once', () => {
