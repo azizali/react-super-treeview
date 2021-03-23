@@ -3,10 +3,6 @@
   "version": "0.3.3-beta.0",
   "description": "React Super Treeview",
   "main": "dist/main.js",
-  "engines": {
-    "node": ">=6.7.0",
-    "npm": ">=4.0.0"
-  },
   "files": [
     "dist"
   ],
